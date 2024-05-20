@@ -1,0 +1,14 @@
+.customNavContainer{
+    
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+
+}
+.navbar-brand{
+    font-size: 1.4rem !important;
+    font-weight: 500;
+}
+.noAnchorDefaults:hover{
+    color: inherit;
+}
