@@ -9,7 +9,7 @@ import { IconButton, ImageListItem, ImageListItemBar } from '@mui/material';
 import CarouselImageSkelation from './CarouselImageSkelation';
 import CarouselSkelation from './CarouselSkelation';
 export default function carousel() {
-    const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay({ stopOnMouseEnter: true, stopOnInteraction: false, delay: 992500 })])
+    const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay({ stopOnMouseEnter: true, stopOnInteraction: false, delay: 3500 })])
     const ImageArr = ['https://ssniper.sirv.com/TourguideProject/luxor.jpg', 'https://ssniper.sirv.com/TourguideProject/mosqueBig.jpg', 'https://ssniper.sirv.com/TourguideProject/Pyramids1.jpg', 'https://ssniper.sirv.com/TourguideProject/Hall.jpg',]
     const [isCarouselLoaded, setIsCarouselLoaded] = useState(false);
 

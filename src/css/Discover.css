@@ -1,5 +1,5 @@
 .BottomBG {
-    background-image: url('./Images/boat.jpg');
+    /* background-image: url('./Images/boat.jpg'); */
     position: absolute;
     z-index: -2;
     /* filter: brightness(75%); */

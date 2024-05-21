@@ -16,7 +16,7 @@ export default function CarouselImageSkeleton({ src }) {
     };
 
     return (
-        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+        <div className='minHeight' style={{ position: 'relative', width: '100%', height: '100%' }}>
             {!loaded && (
                 <ThemeProvider theme={theme}>
                     <Skeleton
@@ -35,7 +35,7 @@ export default function CarouselImageSkeleton({ src }) {
                 </ThemeProvider>
             )}
             <img
-                className='embla__slide__img carouselImage rounded-3 TourSelector'
+                className='minHeight embla__slide__img carouselImage rounded-3 TourSelector'
                 src={src}
                 onLoad={handleImageLoad}
                 onError={() => console.error('Image failed to load')}
