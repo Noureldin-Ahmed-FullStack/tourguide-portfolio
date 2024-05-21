@@ -1,3 +1,10 @@
 .myDarkBG{
     background-color: #161815;
 }
+.browseLink{
+    color: #ffffffec;
+    transition: color 0.3s;
+}
+.browseLink:hover{
+    color: #e51f1f;
+}

@@ -9,9 +9,9 @@ import { IconButton, ImageListItem, ImageListItemBar } from '@mui/material';
 import CarouselImageSkelation from './CarouselImageSkelation';
 import CarouselSkelation from './CarouselSkelation';
 export default function carousel() {
-    const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay({stopOnMouseEnter:true, stopOnInteraction: false, delay: 992500 })])
-    const ImageArr = ['./Images/luxor.jpg','./Images/mosqueBig.jpg','./Images/Pyramids1.jpg','./Images/Hall.jpg',]
-     const [isCarouselLoaded, setIsCarouselLoaded] = useState(false);
+    const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay({ stopOnMouseEnter: true, stopOnInteraction: false, delay: 992500 })])
+    const ImageArr = ['./Images/luxor.jpg', './Images/mosqueBig.jpg', './Images/Pyramids1.jpg', './Images/Hall.jpg',]
+    const [isCarouselLoaded, setIsCarouselLoaded] = useState(false);
 
     useEffect(() => {
         if (emblaRef) {
@@ -21,49 +21,51 @@ export default function carousel() {
 
     return (
         <div className='container'>
-            {isCarouselLoaded ? (
+            {/* {isCarouselLoaded ? ( */}
                 <div className="embla" ref={emblaRef}>
-                <div className="embla__container">
-                    {/* <div className="embla__slide"><img className='embla__slide__img' src="./Images/Pyramids.jpg" /></div> */}
-                    {ImageArr.map((item => (
-                        <div key={item} className="embla__slide ">
-                            <ImageListItem className='ScaleOnHover rounded-3 minHeight'>
-                                {/* <img loading="lazy" className='embla__slide__img carouselImage rounded-3' src={item} /> */}
-                                <CarouselImageSkelation src={item}/>
-                                <ImageListItemBar
-                                    sx={{
-                                        background:
-                                            'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
-                                            'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-                                        '& .MuiImageListItemBar-title': {
-                                            fontWeight: 'bold',
-                                            fontSize: '1.5em', // adjust the font size as needed
-                                        },
-                                        borderBottomLeftRadius: '10px', // adjust the radius as needed
-                                        borderBottomRightRadius: '10px', // adjust the radius as needed
-                                    }}
-                                    position="bottom"
-                                    title="Pyramids"
-                                    subtitle="Pyramids of Giza Tour"
-                                    actionIcon={
-                                        <IconButton
-                                            sx={{ color: 'white' }}
-                                        >
-                                            <ThumbUpRoundedIcon />
-                                        </IconButton>
-                                    }
-                                    actionPosition="left"
-                                />
-                            </ImageListItem>
-                        </div>
+                    <div className="embla__container">
+                        {/* <div className="embla__slide"><img className='embla__slide__img' src="./Images/Pyramids.jpg" /></div> */}
+                        {ImageArr.map((item => (
 
-                    )))}
+
+                            <div key={item} className="embla__slide ">
+                                <ImageListItem className='ScaleOnHover rounded-3 minHeight'>
+                                    {/* <img loading="lazy" className='embla__slide__img carouselImage rounded-3' src={item} /> */}
+                                    <CarouselImageSkelation src={item} />
+                                    <ImageListItemBar
+                                        sx={{
+                                            background:
+                                                'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
+                                                'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+                                            '& .MuiImageListItemBar-title': {
+                                                fontWeight: 'bold',
+                                                fontSize: '1.5em', // adjust the font size as needed
+                                            },
+                                            borderBottomLeftRadius: '10px', // adjust the radius as needed
+                                            borderBottomRightRadius: '10px', // adjust the radius as needed
+                                        }}
+                                        position="bottom"
+                                        title="Pyramids"
+                                        subtitle="Pyramids of Giza Tour"
+                                        actionIcon={
+                                            <IconButton
+                                                sx={{ color: 'white' }}
+                                            >
+                                                <ThumbUpRoundedIcon />
+                                            </IconButton>
+                                        }
+                                        actionPosition="left"
+                                    />
+                                </ImageListItem>
+                            </div>
+
+                        )))}
+                    </div>
                 </div>
-            </div>
-            ):(
+            {/* ) : (
                 <CarouselSkelation />
-            )}
-            
+            )} */}
+
         </div >
     )
 }

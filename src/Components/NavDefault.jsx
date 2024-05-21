@@ -14,8 +14,8 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useState } from 'react';
 import { Tab, Tabs, ThemeProvider, createTheme } from '@mui/material';
 export default function NavDefault() {
-    const pages = ['Products', 'Pricing', 'Blog'];
-    const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+    const pages = ['Home', 'Tours', 'Gallery', 'About Me', 'Contact'];
+    const settings = ['Home', 'Tours', 'Gallery', 'About Me', 'Contact'];
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const handleOpenNavMenu = (event) => {

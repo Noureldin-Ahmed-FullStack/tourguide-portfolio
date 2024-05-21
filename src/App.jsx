@@ -32,7 +32,6 @@ function App() {
       <NavDefault />
       <Tours />
       <Discover />
-      {/* <Footer /> */}
     </>
   )
 }
