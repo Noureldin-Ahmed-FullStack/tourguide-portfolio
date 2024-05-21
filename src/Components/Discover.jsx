@@ -17,9 +17,9 @@ export default function Discover() {
 
     return (
         <div className='w-100 DiscoveryBG'>
-                <img src="./Images/boat.jpg" loading='lazy' className='bgImage' alt="" />
+                <img src="https://ssniper.sirv.com/TourguideProject/boat.jpg" loading='lazy' className='bgImage' alt="" />
                 
-            <div className='h-100 bg-danger-subtle w-100 z-3'>
+            <div className='h-100 bg-dark-subtle w-100 z-3'>
                 <Grid
                     container
                     className='w-100 h-100 z-3 container position-relative '
@@ -39,10 +39,10 @@ export default function Discover() {
                             <Grid item xs={12} sm={6} md={6}>
                                 <Grid container spacing={2} justifyContent={"center"}>
                                     <Grid item xs={6} sm={7} md={6}>
-                                        <img src="./bg1.jpg" className='rounded-4 VideoBorder w-100' alt="" />
+                                        <img src="https://ssniper.sirv.com/TourguideProject/interior.jpg" className='rounded-4 VideoBorder w-100' alt="" />
                                     </Grid>
                                     <Grid item xs={6} sm={7} md={6}>
-                                        <img src="./bg2.jpg" className='rounded-4 VideoBorder w-100' alt="" />
+                                        <img src="https://ssniper.sirv.com/TourguideProject/bg2.jpg" className='rounded-4 VideoBorder w-100' alt="" />
                                     </Grid>
                                 </Grid>
                             </Grid>

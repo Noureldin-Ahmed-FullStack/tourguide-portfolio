@@ -11,7 +11,7 @@ export default function BigBG() {
   });
   return (
     <div className='w-100 mainBG'>
-      {/* <img src="./bg2.jpg" className='w-100' alt="" /> */}
+      <img src="https://ssniper.sirv.com/TourguideProject/bg2.jpg" className='bgImage' alt="" />
       <Grid
         container
         className='w-100 h-100 z-2 container position-relative '

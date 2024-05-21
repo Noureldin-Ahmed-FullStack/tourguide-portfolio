@@ -35,7 +35,7 @@ export default function CarouselImageSkeleton({ src }) {
                 </ThemeProvider>
             )}
             <img
-                className='embla__slide__img carouselImage rounded-3'
+                className='embla__slide__img carouselImage rounded-3 TourSelector'
                 src={src}
                 onLoad={handleImageLoad}
                 onError={() => console.error('Image failed to load')}
