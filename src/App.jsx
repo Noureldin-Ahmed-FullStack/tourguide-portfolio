@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './Components/Navbar';
 import BigBG from './Components/BigBG';
@@ -27,9 +28,8 @@ function App() {
   }
   return (
     <>
-      <BigBG />
-      {/* <Navbar /> */}
       <NavDefault />
+      <BigBG />
       <Tours />
       <Discover />
     </>

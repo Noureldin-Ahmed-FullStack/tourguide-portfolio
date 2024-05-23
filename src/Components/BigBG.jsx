@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../css/mainBG.css'
 import { TypeAnimation } from 'react-type-animation'
-import { Grid, Tab, Tabs, ThemeProvider, createTheme } from '@mui/material'
+import { Grid, Skeleton, Tab, Tabs, ThemeProvider, createTheme } from '@mui/material'
 
 export default function BigBG() {
+  const [loaded, setLoaded] = useState(false);
+  
+  const handleImageLoad = () => {
+    console.log('Image loaded');
+    setLoaded(true);
+};
   const theme = createTheme({
       palette: {
           mode: 'dark'
@@ -11,7 +17,30 @@ export default function BigBG() {
   });
   return (
     <div className='w-100 mainBG'>
-      <img src="https://ssniper.sirv.com/TourguideProject/bg2.jpg" className='bgImage' alt="" />
+      {!loaded && (
+                <ThemeProvider theme={theme}>
+                    <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width="100%"
+                        height="100%"
+                        sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            zIndex: 5
+                        }}
+                    />
+                </ThemeProvider>
+            )}
+            <img
+                className={loaded? 'bgImage' : 'd-none'}
+                src={'https://ssniper.sirv.com/TourguideProject/bg2.jpg'}
+                onLoad={handleImageLoad}
+                onError={() => console.error('Image failed to load')}
+                
+            />
+      {/* <img src="https://ssniper.sirv.com/TourguideProject/bg2.jpg" className='bgImage' alt="" /> */}
       <Grid
         container
         className='w-100 h-100 z-2 container position-relative '

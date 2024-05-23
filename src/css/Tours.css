@@ -5,11 +5,12 @@
 .browseLink {
     cursor: pointer;
     color: #ffffffec;
-    transition: color 0.3s;
+    transition: all 0.3s;
 }
 
 .browseLink:hover {
     color: #e51f1f;
+    font-size: 1.05rem;
 }
 
 .MyLink {

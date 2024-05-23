@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import '../css/Discover.css'
+
 import { TypeAnimation } from 'react-type-animation'
 import { Grid, Skeleton, Tab, Tabs, ThemeProvider, createTheme } from '@mui/material'
 import PlayCircleOutlinedIcon from '@mui/icons-material/PlayCircleOutlined';
@@ -17,8 +18,8 @@ export default function Discover() {
 
     return (
         <div className='w-100 DiscoveryBG'>
-                <img src="https://ssniper.sirv.com/TourguideProject/boat.jpg" loading='lazy' className='bgImage' alt="" />
-                
+            <img src="https://ssniper.sirv.com/TourguideProject/boat.jpg" loading='lazy' className='bgImage' alt="" />
+
             <div className='h-100 bg-dark-subtle w-100 z-3'>
                 <Grid
                     container
@@ -30,8 +31,8 @@ export default function Discover() {
                     <Grid item className='text-start'>
                         <h1>Watch this!</h1>
                         <div className='d-flex align-items-center'>
-                            <PlayCircleOutlinedIcon sx={{ fontSize: "3.5rem" }} /> <h5 className='mb-0 ms-1'>WATCH THE VIDEO</h5>
-
+                            {/* <PlayCircleOutlinedIcon sx={{ fontSize: "3.5rem" ,transition: 'transform 0.5s'}} className='watchButton' /> <h5 className='mb-0 ms-1'>WATCH THE VIDEO</h5> */}
+                            <i class="fa-regular fa-circle-play watchButton"></i> <h5 className='mb-0 ms-2'>WATCH THE VIDEO</h5>
                         </div>
 
                         <Grid container alignItems={"center"} justifyContent="space-between">
@@ -39,10 +40,20 @@ export default function Discover() {
                             <Grid item xs={12} sm={6} md={6}>
                                 <Grid container spacing={2} justifyContent={"center"}>
                                     <Grid item xs={6} sm={7} md={6}>
-                                        <img src="https://ssniper.sirv.com/TourguideProject/interior.jpg" className='rounded-4 VideoBorder w-100' alt="" />
+                                        <div className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
+                                            <img src="https://ssniper.sirv.com/TourguideProject/interior.jpg" className=' w-100 ' alt="" />
+                                            <div class="overlay">
+                                            <i class="fa-regular fa-circle-play watchButton"></i>
+                                            </div>
+                                        </div>
                                     </Grid>
                                     <Grid item xs={6} sm={7} md={6}>
-                                        <img src="https://ssniper.sirv.com/TourguideProject/bg2.jpg" className='rounded-4 VideoBorder w-100' alt="" />
+                                    <div className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
+                                            <img src="https://ssniper.sirv.com/TourguideProject/bg2.jpg" className=' w-100 ' alt="" />
+                                            <div class="overlay">
+                                                <i class="fa-regular fa-circle-play watchButton"></i>
+                                            </div>
+                                        </div>
                                     </Grid>
                                 </Grid>
                             </Grid>
