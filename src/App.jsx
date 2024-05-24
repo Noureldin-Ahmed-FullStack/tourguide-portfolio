@@ -9,8 +9,13 @@ import BigBG from './Components/BigBG';
 import NavTest from './Components/NavTest';
 import NavDefault from './Components/NavDefault';
 import Footer from './Components/Footer';
-import Tours from './Components/Tours';
+import ToursAll from './Components/Pages/ToursAll';
 import Discover from './Components/Discover';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Main from './Components/Main';
+import Gallery from './Components/Pages/Gallery';
+import About from './Components/Pages/About';
+import Contact from './Components/Pages/Contact';
 
 
 
@@ -28,10 +33,18 @@ function App() {
   }
   return (
     <>
+      <Router>
       <NavDefault />
-      <BigBG />
-      <Tours />
-      <Discover />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/Tours" element={<ToursAll />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<h1>lol wrong route</h1>} />
+        </Routes>
+      </Router>
+
     </>
   )
 }

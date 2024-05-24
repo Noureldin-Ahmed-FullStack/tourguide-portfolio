@@ -32,7 +32,7 @@ export default function Discover() {
                         <h1>Watch this!</h1>
                         <div className='d-flex align-items-center'>
                             {/* <PlayCircleOutlinedIcon sx={{ fontSize: "3.5rem" ,transition: 'transform 0.5s'}} className='watchButton' /> <h5 className='mb-0 ms-1'>WATCH THE VIDEO</h5> */}
-                            <i class="fa-regular fa-circle-play watchButton"></i> <h5 className='mb-0 ms-2'>WATCH THE VIDEO</h5>
+                            <i className="fa-regular fa-circle-play watchButton"></i> <h5 className='mb-0 ms-2'>WATCH THE VIDEO</h5>
                         </div>
 
                         <Grid container alignItems={"center"} justifyContent="space-between">
@@ -42,16 +42,16 @@ export default function Discover() {
                                     <Grid item xs={6} sm={7} md={6}>
                                         <div className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
                                             <img src="https://ssniper.sirv.com/TourguideProject/interior.jpg" className=' w-100 ' alt="" />
-                                            <div class="overlay">
-                                            <i class="fa-regular fa-circle-play watchButton"></i>
+                                            <div className="overlay">
+                                            <i className="fa-regular fa-circle-play watchButton"></i>
                                             </div>
                                         </div>
                                     </Grid>
                                     <Grid item xs={6} sm={7} md={6}>
                                     <div className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
                                             <img src="https://ssniper.sirv.com/TourguideProject/bg2.jpg" className=' w-100 ' alt="" />
-                                            <div class="overlay">
-                                                <i class="fa-regular fa-circle-play watchButton"></i>
+                                            <div className="overlay">
+                                                <i className="fa-regular fa-circle-play watchButton"></i>
                                             </div>
                                         </div>
                                     </Grid>

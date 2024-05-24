@@ -13,11 +13,34 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useState } from 'react';
 import { Tab, Tabs, ThemeProvider, createTheme } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 export default function NavDefault() {
     const pages = ['Home', 'Tours', 'Gallery', 'About Me', 'Contact'];
     const settings = ['Home', 'Tours', 'Gallery', 'About Me', 'Contact'];
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
+    let navigate = useNavigate()
+
+    const getTabValue = (pathname) => {
+
+        switch (pathname) {
+            case './':
+                return 1;
+            case '/tours':
+                return 2;
+            case '/gallery':
+                return 3;
+            case '/about':
+                return 4;
+            case '/contact':
+                return 5;
+            default:
+                return 1;
+        }
+    };
+    const GoToPage = (link) => {
+        navigate(link);
+    }
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -39,8 +62,8 @@ export default function NavDefault() {
     });
     return (
         <ThemeProvider theme={theme}>
-            <AppBar sx={{ boxShadow:'none', top:'2rem' ,borderBottom: { xs: 1, md: 0 }}} color='transparent' position="absolute">
-                <Container  maxWidth="xl">
+            <AppBar sx={{ boxShadow: 'none', top: '2rem', borderBottom: { xs: 1, md: 0 } }} color='transparent' position="absolute">
+                <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                         <Typography
@@ -48,7 +71,7 @@ export default function NavDefault() {
                             noWrap
                             className='noAnchorDefaults'
                             component="a"
-                            href="#app-bar-with-responsive-menu"
+                            href="./"
                             sx={{
                                 mr: 2,
                                 display: { xs: 'none', md: 'flex' },
@@ -118,31 +141,31 @@ export default function NavDefault() {
                         >
                             AHMED
                         </Typography>
-                        <Box sx={{ flexGrow: 1,justifyContent:"center", display: { xs: 'none', md: 'flex' } }}>
-                        <Tabs
-                            value={"1"}
-                            variant="scrollable"
-                            indicatorColor="secondary"
-                            sx={{
-                                borderBottom: 1, borderColor: 'divider' ,
-                                '& .MuiTabs-indicator': {
-                                    backgroundColor: '#e51f1f',
-                                },
-                                '& .MuiTab-root.Mui-selected': {
-                                    color: 'white',
-                                    fontWeight: 'bold',
-                                  },
-                            }}
-                            textColor="inherit"
-                            scrollButtons
-                            allowScrollButtonsMobile
-                            aria-label="lab API tabs example">
-                            <Tab label="HOME" value="1" />
-                            <Tab label="TOURS" value="2" />
-                            <Tab label="GALLERY" value="3" />
-                            <Tab label="ABOUT ME" value="4" />
-                            <Tab label="CONTACT" value="5" />
-                        </Tabs>
+                        <Box sx={{ flexGrow: 1, justifyContent: "center", display: { xs: 'none', md: 'flex' } }}>
+                            <Tabs
+                                value={getTabValue(location.pathname)}
+                                variant="scrollable"
+                                indicatorColor="secondary"
+                                sx={{
+                                    borderBottom: 1, borderColor: 'divider',
+                                    '& .MuiTabs-indicator': {
+                                        backgroundColor: '#e51f1f',
+                                    },
+                                    '& .MuiTab-root.Mui-selected': {
+                                        color: 'white',
+                                        fontWeight: 'bold',
+                                    },
+                                }}
+                                textColor="inherit"
+                                scrollButtons
+                                allowScrollButtonsMobile
+                                aria-label="lab API tabs example">
+                                <Tab onClick={() => GoToPage('./')} label="HOME" value={1} />
+                                <Tab onClick={() => GoToPage('./tours')} label="TOURS" value={2} />
+                                <Tab onClick={() => GoToPage('./gallery')} label="GALLERY" value={3} />
+                                <Tab onClick={() => GoToPage('./about')} label="ABOUT ME" value={4} />
+                                <Tab onClick={() => GoToPage('./contact')} label="CONTACT" value={5} />
+                            </Tabs>
                         </Box>
 
                         <Box sx={{ flexGrow: 0 }}>

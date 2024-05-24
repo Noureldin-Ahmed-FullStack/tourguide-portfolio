@@ -7,7 +7,9 @@
     color: #ffffffec;
     transition: all 0.3s;
 }
-
+.galleryMT{
+    margin-top: 7rem;
+}
 .browseLink:hover {
     color: #e51f1f;
     font-size: 1.05rem;
