@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useState } from 'react';
 import { Tab, Tabs, ThemeProvider, createTheme } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 export default function NavDefault() {
     const pages = ['Home', 'Tours', 'Gallery', 'About Me', 'Contact'];
     const settings = ['Home', 'Tours', 'Gallery', 'About Me', 'Contact'];
@@ -21,8 +21,9 @@ export default function NavDefault() {
     const [anchorElUser, setAnchorElUser] = useState(null);
     let navigate = useNavigate()
 
+    const location = useLocation();
+    const currentPath = location.hash.replace('#', '');
     const getTabValue = (pathname) => {
-
         switch (pathname) {
             case './':
                 return 1;

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -11,15 +11,29 @@ import NavDefault from './Components/NavDefault';
 import Footer from './Components/Footer';
 import ToursAll from './Components/Pages/ToursAll';
 import Discover from './Components/Discover';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Main from './Components/Main';
 import Gallery from './Components/Pages/Gallery';
 import About from './Components/Pages/About';
 import Contact from './Components/Pages/Contact';
-
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadFull } from "tsparticles";
+import particlesConfig from '../src/assets/particles.json'; // Adjust the path as needed
 
 
 function App() {
+  const [init, setInit] = useState(false);
+  useEffect(() => {
+    if (init) {
+      return;
+    }
+
+    initParticlesEngine(async (engine) => {
+      await loadFull(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
   const { darkMode, setDarkmode } = useState(true);
   const setDarkmodeFunc = () => {
     setDarkmode(false);
@@ -32,20 +46,27 @@ function App() {
     const theme = localStorage.setItem('theme', "light")
   }
   return (
-    <>
-      <Router>
-      <NavDefault />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/Tours" element={<ToursAll />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<h1>lol wrong route</h1>} />
-        </Routes>
-      </Router>
+    <div className="main-container">
+      <Particles
+        id="tsparticles"
+        options={particlesConfig}
+        />
+      <div className='z-0'>
+        <Router>
+          <NavDefault />
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/tourguide-portfolio" element={<Main />} />
+            <Route path="/Tours" element={<ToursAll />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<h1>lol wrong route</h1>} />
+          </Routes>
+        </Router>
 
-    </>
+      </div>
+    </div>
   )
 }
 

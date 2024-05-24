@@ -9,6 +9,10 @@ export default function Discover() {
 
     const [loaded, setLoaded] = useState(false);
 
+    const handleImageLoad = () => {
+        console.log('Image loaded');
+        setLoaded(true);
+    };
     const theme = createTheme({
         palette: {
             mode: 'dark',
@@ -17,8 +21,31 @@ export default function Discover() {
 
 
     return (
-        <div className='w-100 DiscoveryBG'>
-            <img src="https://ssniper.sirv.com/TourguideProject/boat.jpg" loading='lazy' className='bgImage' alt="" />
+        <div className='w-100 z-0 DiscoveryBG'>
+            {!loaded && (
+                <ThemeProvider theme={theme}>
+                    <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width="100%"
+                        height="100%"
+                        sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            zIndex: 5
+                        }}
+                    />
+                </ThemeProvider>
+            )}
+            <img
+                className={loaded ? 'bgImage' : 'd-none'}
+                src={'https://ssniper.sirv.com/TourguideProject/boat.jpg'}
+                onLoad={handleImageLoad}
+                onError={() => console.error('Image failed to load')}
+
+            />
+            {/* <img src="https://ssniper.sirv.com/TourguideProject/boat.jpg" loading='lazy' className='bgImage' alt="" /> */}
 
             <div className='h-100 bg-dark-subtle w-100 z-3'>
                 <Grid
@@ -43,12 +70,12 @@ export default function Discover() {
                                         <div className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
                                             <img src="https://ssniper.sirv.com/TourguideProject/interior.jpg" className=' w-100 ' alt="" />
                                             <div className="overlay">
-                                            <i className="fa-regular fa-circle-play watchButton"></i>
+                                                <i className="fa-regular fa-circle-play watchButton"></i>
                                             </div>
                                         </div>
                                     </Grid>
                                     <Grid item xs={6} sm={7} md={6}>
-                                    <div className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
+                                        <div className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
                                             <img src="https://ssniper.sirv.com/TourguideProject/bg2.jpg" className=' w-100 ' alt="" />
                                             <div className="overlay">
                                                 <i className="fa-regular fa-circle-play watchButton"></i>
