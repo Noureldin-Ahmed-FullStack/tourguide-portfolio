@@ -117,8 +117,8 @@ export default function NavDefault() {
                                 }}
                             >
                                 {pages.map((page) => (
-                                    <MenuItem key={page.text} onClick={handleCloseNavMenu}>
-                                        <Typography component={Link} to={`/`+page.path} textAlign="center">{page.text}</Typography>
+                                    <MenuItem component={Link} to={`/`+page.path} key={page.text} onClick={handleCloseNavMenu}>
+                                        <Typography className='MyLink' textAlign="center">{page.text}</Typography>
                                     </MenuItem>
                                 ))}
                             </Menu>

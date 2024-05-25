@@ -4,7 +4,7 @@
   --gradient: linear-gradient(10deg, #ffaa00, #ff6a00);
   --gradient2: linear-gradient(15deg, #04ea00, #00d17d);
   --gradient3: linear-gradient(15deg, #b648ff, #ef5dff);
-  --gradient4: linear-gradient(to top, #b648ff00, #e51f1f);
+  --gradient4: linear-gradient(to top, #b648ff00, #e51f1f5b, #b648ff00);
   font-size: 1rem;
 }
 
