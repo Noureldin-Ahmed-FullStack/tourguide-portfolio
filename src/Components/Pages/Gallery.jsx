@@ -1,22 +1,22 @@
 import { IconButton, ImageList, ImageListItem, ImageListItemBar, ListSubheader, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react'
+import ImageLoaderSkeleton from '../ImageLoaderSkeleton';
 export default function Gallery() {
-    const itemData = [
-       
+    const itemData = [       
         {
-          img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+          img: '1.jpg',
           title: 'Coffee',
           author: '@nolanissac',
           cols: 2,
         },
         {
-          img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+          img: '2.jpg',
           title: 'Hats',
           author: '@hjrc33',
           cols: 2,
         },
         {
-          img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+          img: '3.jpg',
           title: 'Honey',
           author: '@arwinneil',
           rows: 2,
@@ -24,37 +24,55 @@ export default function Gallery() {
           featured: true,
         },
         {
-          img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
+          img: '4.jpg',
           title: 'Basketball',
           author: '@tjdragotta',
         },
         {
-          img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
+          img: '5.jpg',
           title: 'Fern',
           author: '@katie_wasserman',
         },
         {
-          img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
+          img: '6.jpg',
           title: 'Mushrooms',
           author: '@silverdalex',
           rows: 2,
           cols: 2,
         },
         {
-          img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
+          img: '7.jpg',
           title: 'Tomato basil',
           author: '@shelleypauls',
         },
         {
-          img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
+          img: '8.jpg',
           title: 'Sea star',
           author: '@peterlaster',
         },
         {
-          img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
+          img: '9.jpg',
           title: 'Bike',
           author: '@southside_customs',
           cols: 2,
+        },
+        {
+          img: '10.jpg',
+          title: 'Bike',
+          author: '@southside_customs',
+          cols: 2,
+        },
+        {
+          img: '11.jpg',
+          title: 'Bike',
+          author: '@southside_customs',
+          cols: 2,
+        },
+        {
+          img: '12.jpg',
+          title: 'Bike',
+          author: '@southside_customs',
+          cols: 3,
         },
       ];
       const theme = useTheme();
@@ -75,16 +93,17 @@ export default function Gallery() {
       }
       return (
         <div className='container galleryMT'>
-          <ImageList cols={cols} gap={8} variant='masonry'>
+          <ImageList cols={cols} gap={30} variant='masonry'>
     
             {itemData.map((item) => (
               <ImageListItem key={item.img}>
-                <img
-                  srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                  src={`${item.img}?w=248&fit=crop&auto=format`}
+                {/* <img
+                  srcSet={`https://ssniper.sirv.com/TourguideProject/Gallery/${item.img}`}
+                  src={`https://ssniper.sirv.com/TourguideProject/Gallery/${item.img}`}
                   alt={item.title}
                   loading="lazy"
-                />
+                /> */}
+                <ImageLoaderSkeleton width={212} height={282} src={`https://ssniper.sirv.com/TourguideProject/Gallery/${item.img}`} title={item.title}/>
                 <ImageListItemBar
                   title={item.title}
                   subtitle={item.author}
