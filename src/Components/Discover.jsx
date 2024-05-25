@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
 import '../css/Discover.css'
-
-import { TypeAnimation } from 'react-type-animation'
-import { Grid, Skeleton, Tab, Tabs, ThemeProvider, createTheme } from '@mui/material'
-import PlayCircleOutlinedIcon from '@mui/icons-material/PlayCircleOutlined';
+import { Grid, Skeleton, ThemeProvider, createTheme } from '@mui/material'
+import { AnimatePresence, motion } from "framer-motion";
 import Socials from './Socials';
+import Modal from './Modal Stuff/Modal';
 export default function Discover() {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [SelectedVideo, setSelectedVideo] = useState('Vid1.mp4');
 
+    const close = () => setModalOpen(false);
+    const open = () => setModalOpen(true);
+    const startVideo = (video) =>{
+        setSelectedVideo(video)
+        modalOpen ? close() : open()
+    }
     const [loaded, setLoaded] = useState(false);
 
     const handleImageLoad = () => {
@@ -57,26 +64,50 @@ export default function Discover() {
                 >
                     <Grid item className='text-start'>
                         <h1>Watch this!</h1>
-                        <div className='d-flex align-items-center'>
+                        <div className='d-flex align-items-center mb-3'>
                             {/* <PlayCircleOutlinedIcon sx={{ fontSize: "3.5rem" ,transition: 'transform 0.5s'}} className='watchButton' /> <h5 className='mb-0 ms-1'>WATCH THE VIDEO</h5> */}
-                            <i className="fa-regular fa-circle-play watchButton"></i> <h5 className='mb-0 ms-2'>WATCH THE VIDEO</h5>
+                            <i onClick={() => startVideo('Vid2.mp4')} className="fa-regular fa-circle-play watchButton"></i> <h5 className='mb-0 ms-2'>WATCH THE VIDEO</h5>
                         </div>
-
+                        <div>
+                            {/* <motion.button
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                className="save-button"
+                                onClick={() => (modalOpen ? close() : open())}
+                            >
+                                Launch modal
+                            </motion.button> */}
+                            <AnimatePresence
+                                initial={false}
+                                mode='wait'
+                                onExitComplete={() => null}
+                            >
+                                {modalOpen && <Modal modalOpen={modalOpen} animation={"dropIn"} handleClose={close} >
+                                    {/* <h1>Hi, very cool!</h1> */}
+                                    <video
+                                        autoPlay
+                                        config={{ file: { attributes: { controlsList: 'nodownload' } } }}
+                                        // Disable right click
+                                        onContextMenu={e => e.preventDefault()}
+                                        className='w-100 vids rounded-3' controls src={`https://ssniper.sirv.com/TourguideProject/Videos/${SelectedVideo}`}></video>
+                                </Modal>}
+                            </AnimatePresence>
+                        </div>
                         <Grid container alignItems={"center"} justifyContent="space-between">
                             <Grid item order={{ xs: 1, sm: 0, md: 0 }} xs={12} sm={6} md={4}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis, ut ullam? Itaque cumque dolores voluptate quia, temporibus eaque nobis laudantium totam repellat aliquam facilis nemo!</Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Grid container spacing={2} justifyContent={"center"}>
                                     <Grid item xs={6} sm={7} md={6}>
-                                        <div className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
-                                            <img src="https://ssniper.sirv.com/TourguideProject/interior.jpg" className=' w-100 ' alt="" />
+                                        <div onClick={() => startVideo('Vid1.mp4')} className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
+                                            <img src="https://ssniper.sirv.com/TourguideProject/Gallery/thumbnail1.jpg" style={{aspectRatio:"4/3"}} className=' w-100 ' alt="" />
                                             <div className="overlay">
                                                 <i className="fa-regular fa-circle-play watchButton"></i>
                                             </div>
                                         </div>
                                     </Grid>
                                     <Grid item xs={6} sm={7} md={6}>
-                                        <div className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
-                                            <img src="https://ssniper.sirv.com/TourguideProject/bg2.jpg" className=' w-100 ' alt="" />
+                                        <div onClick={() => startVideo('Vid2.mp4')} className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
+                                            <img src="https://ssniper.sirv.com/TourguideProject/Gallery/thumbnail2.jpg" style={{aspectRatio:"4/3"}} className=' w-100 ' alt="" />
                                             <div className="overlay">
                                                 <i className="fa-regular fa-circle-play watchButton"></i>
                                             </div>

@@ -35,11 +35,9 @@ export default function ImageLoaderSkeleton(props) {
       <img
         className={loaded ? 'w-100' : 'd-none'}
         src={src}
-        srcSet={src}
         onLoad={handleImageLoad}
-        onError={() => console.error('Image failed to load')}
+        onError={handleImageLoad}
         alt={title}
-        loading="lazy"
 
       />
     </>
