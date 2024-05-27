@@ -2,10 +2,14 @@ import React, { useState } from 'react'
 import '../css/mainBG.css'
 import { TypeAnimation } from 'react-type-animation'
 import { Grid, Skeleton, Tab, Tabs, ThemeProvider, createTheme } from '@mui/material'
+import { useTranslation } from 'react-i18next';
 
 export default function BigBG() {
   const [loaded, setLoaded] = useState(false);
-  
+  const [t, i18n] = useTranslation("global");
+  const changeLanguage = (lang)=>{
+    i18n.changeLanguage(lang)
+  }
   const handleImageLoad = () => {
     console.log('Image loaded');
     setLoaded(true);
@@ -54,11 +58,11 @@ export default function BigBG() {
             className=' typer'
             sequence={[
               // Same substring at the start will only be typed out once, initially
-              "Explore Egypt!",
+              t("headers.first"),
               2000, // wait 1s before replacing "Mice" with "Hamsters"
-              "Visit the Pyramids!",
+              t("headers.second"),
               1000,
-              "Great Selection of Tours",
+              t("headers.third"),
               1000,
             ]}
             wrapper="h1"
@@ -68,7 +72,7 @@ export default function BigBG() {
           />
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6} md={6}>
-              <h4 className='text-start typerSubtext'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum aut provident eaque error soluta est laboriosam rem maiores a eveniet, excepturi </h4>
+              <h4 className='text-start typerSubtext'>{t("headerSubText")}</h4>
             </Grid>
           </Grid>
         </Grid>

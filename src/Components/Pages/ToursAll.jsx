@@ -1,5 +1,6 @@
 import { IconButton, ImageList, ImageListItem, ImageListItemBar, ListSubheader, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react'
+import ImageLoaderSkeleton from '../ImageLoaderSkeleton';
 
 export default function ToursAll() {
   const itemData = [
@@ -97,12 +98,16 @@ export default function ToursAll() {
 
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
-            <img
+            {/* <img
               srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
               src={`${item.img}?w=248&fit=crop&auto=format`}
               alt={item.title}
               loading="lazy"
-            />
+            /> */}
+            <ImageLoaderSkeleton 
+            height='120px'
+            title='item.title'
+            src={`${item.img}?w=248&fit=crop&auto=format`}/>
             <ImageListItemBar
               title={item.title}
               subtitle={item.author}

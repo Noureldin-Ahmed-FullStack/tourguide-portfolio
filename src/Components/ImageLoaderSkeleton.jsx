@@ -21,8 +21,8 @@ export default function ImageLoaderSkeleton(props) {
           <Skeleton
             animation="wave"
             variant="rectangular"
-            width={'100%'}
-            height={height}
+            width={width || '100%'}
+            height={height || 'auto'}
             sx={{
               // position: 'absolute',
               // top: 0,

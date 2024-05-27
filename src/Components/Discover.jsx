@@ -4,9 +4,11 @@ import { Grid, Skeleton, ThemeProvider, createTheme } from '@mui/material'
 import { AnimatePresence, motion } from "framer-motion";
 import Socials from './Socials';
 import Modal from './Modal Stuff/Modal';
+import { useTranslation } from 'react-i18next';
 export default function Discover() {
     const [modalOpen, setModalOpen] = useState(false);
     const [SelectedVideo, setSelectedVideo] = useState('Vid1.mp4');
+    const [t, i18n] = useTranslation("global");
 
     const close = () => setModalOpen(false);
     const open = () => setModalOpen(true);
@@ -63,10 +65,10 @@ export default function Discover() {
                     alignItems="flex-start"
                 >
                     <Grid item className='text-start'>
-                        <h1>Watch this!</h1>
+                        <h1>{t('discover.header')}</h1>
                         <div className='d-flex align-items-center mb-3'>
                             {/* <PlayCircleOutlinedIcon sx={{ fontSize: "3.5rem" ,transition: 'transform 0.5s'}} className='watchButton' /> <h5 className='mb-0 ms-1'>WATCH THE VIDEO</h5> */}
-                            <i onClick={() => startVideo('Vid2.mp4')} className="fa-regular fa-circle-play watchButton"></i> <h5 className='mb-0 ms-2'>WATCH THE VIDEO</h5>
+                            <i onClick={() => startVideo('Vid2.mp4')} className="fa-regular fa-circle-play watchButton"></i> <h5 className='mb-0 ms-2'>{t('discover.secondHeader')}</h5>
                         </div>
                         <div>
                             {/* <motion.button
@@ -94,7 +96,7 @@ export default function Discover() {
                             </AnimatePresence>
                         </div>
                         <Grid container alignItems={"center"} justifyContent="space-between">
-                            <Grid item order={{ xs: 1, sm: 0, md: 0 }} xs={12} sm={6} md={4}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis, ut ullam? Itaque cumque dolores voluptate quia, temporibus eaque nobis laudantium totam repellat aliquam facilis nemo!</Grid>
+                            <Grid item order={{ xs: 1, sm: 0, md: 0 }} xs={12} sm={6} md={4}>{t('discover.subtext')}</Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Grid container spacing={2} justifyContent={"center"}>
                                     <Grid item xs={6} sm={7} md={6}>

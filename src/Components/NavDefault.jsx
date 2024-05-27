@@ -9,19 +9,34 @@ import Container from '@mui/material/Container';
 import FlightIcon from '@mui/icons-material/Flight';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import LanguageIcon from '@mui/icons-material/Language';
 import { useState } from 'react';
-import { Tab, Tabs, ThemeProvider, createTheme } from '@mui/material';
+import { Badge, Tab, Tabs, ThemeProvider, createTheme } from '@mui/material';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 export default function NavDefault() {
+    const [t, i18n] = useTranslation("global");
+    const navText = t('nav', { returnObjects: true });
+    const [CurrentLang, setCurrentLang] = useState(i18n.language);
+    const changeLanguage = () => {
+        console.log(i18n.language);
+        i18n.language == 'en' ? i18n.changeLanguage('ru') : i18n.changeLanguage('en')
+        setCurrentLang(i18n.language)
+        // i18n.changeLanguage(lang)
+    }
     const pages = [
-        {text:'Home',path:''}, {text:'Tours',path:'Tours'}, {text:'Gallery',path:'Gallery'}, {text:'About Me',path:'About'}, {text:'Contact',path:'Contact'}];
-    const settings = ['Home', 'Tours', 'Gallery', 'About Me', 'Contact'];
+        { text: navText[0], path: '' }, { text: navText[1], path: 'Tours' }, { text: navText[2], path: 'Gallery' }, { text: navText[3], path: 'About' }, { text: navText[4], path: 'Contact' }];
     const [anchorElNav, setAnchorElNav] = useState(null);
-    const [anchorElUser, setAnchorElUser] = useState(null);
+    // const [anchorElUser, setAnchorElUser] = useState(null);
+    // const handleOpenUserMenu = (event) => {
+    //     setAnchorElUser(event.currentTarget);
+    // };
+    // const handleCloseUserMenu = () => {
+    //     setAnchorElUser(null);
+    // };
     let navigate = useNavigate()
 
     const location = useLocation();
-    const currentPath = location.hash.replace('#', '');
     const getTabValue = (pathname) => {
         switch (pathname) {
             case './':
@@ -44,17 +59,12 @@ export default function NavDefault() {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
+
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
     const theme = createTheme({
         palette: {
             mode: 'dark'
@@ -62,14 +72,14 @@ export default function NavDefault() {
     });
     return (
         <ThemeProvider theme={theme}>
-            <AppBar sx={{ boxShadow: 'none', top: '2rem', borderBottom: { xs: 1, md: 0 }, zIndex:'4' }} color='transparent' position="absolute">
+            <AppBar sx={{ boxShadow: 'none', top: '2rem', borderBottom: { xs: 1, md: 0 }, zIndex: '4' }} color='transparent' position="absolute">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <FlightIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                         <Typography
                             variant="h6"
                             noWrap
-                            className='noAnchorDefaults'
+                            className='noAnchorDefaults MyLink'
                             component="a"
                             href="./"
                             sx={{
@@ -78,7 +88,7 @@ export default function NavDefault() {
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
                                 letterSpacing: '.3rem',
-                                color: 'inherit',
+                                color: 'inherit !important',
                                 textDecoration: 'none',
                             }}
                         >
@@ -115,7 +125,7 @@ export default function NavDefault() {
                                 }}
                             >
                                 {pages.map((page) => (
-                                    <MenuItem component={Link} to={`/`+page.path} key={page.text} onClick={handleCloseNavMenu}>
+                                    <MenuItem component={Link} to={`/` + page.path} key={page.text} onClick={handleCloseNavMenu}>
                                         <Typography className='MyLink' textAlign="center">{page.text}</Typography>
                                     </MenuItem>
                                 ))}
@@ -160,21 +170,31 @@ export default function NavDefault() {
                                 scrollButtons
                                 allowScrollButtonsMobile
                                 aria-label="lab API tabs example">
-                                <Tab onClick={() => GoToPage('./')} label="HOME" value={1} />
-                                <Tab onClick={() => GoToPage('./tours')} label="TOURS" value={2} />
-                                <Tab onClick={() => GoToPage('./gallery')} label="GALLERY" value={3} />
-                                <Tab onClick={() => GoToPage('./about')} label="ABOUT ME" value={4} />
-                                <Tab onClick={() => GoToPage('./contact')} label="CONTACT" value={5} />
+                                <Tab onClick={() => GoToPage('./')} label={navText[0]} value={1} />
+                                <Tab onClick={() => GoToPage('./tours')} label={navText[1]} value={2} />
+                                <Tab onClick={() => GoToPage('./gallery')} label={navText[2]} value={3} />
+                                <Tab onClick={() => GoToPage('./about')} label={navText[3]} value={4} />
+                                <Tab onClick={() => GoToPage('./contact')} label={navText[4]} value={5} />
                             </Tabs>
                         </Box>
 
                         <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip title="Open settings">
-                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
-                                </IconButton>
+                            <Tooltip title="Change Language">
+                                <Badge badgeContent={CurrentLang} color='primary'>
+                                    <LanguageIcon onClick={changeLanguage} className='languageIco' sx={{
+                                        transition: 'transform 0.3s ease',
+                                        cursor: "pointer",
+                                        '&:hover': {
+                                            transform: 'scale(1.2)',
+                                        }
+                                    }} />
+                                </Badge>
+
+                                {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}> */}
+                                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                                {/* </IconButton> */}
                             </Tooltip>
-                            <Menu
+                            {/* <Menu
                                 sx={{ mt: '45px' }}
                                 id="menu-appbar"
                                 anchorEl={anchorElUser}
@@ -195,7 +215,7 @@ export default function NavDefault() {
                                         <Typography textAlign="center">{setting}</Typography>
                                     </MenuItem>
                                 ))}
-                            </Menu>
+                            </Menu> */}
                         </Box>
                     </Toolbar>
                 </Container>
