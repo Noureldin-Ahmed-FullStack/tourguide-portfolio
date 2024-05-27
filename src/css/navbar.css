@@ -10,5 +10,8 @@
     font-weight: 500;
 }
 .noAnchorDefaults:hover{
-    color: inherit;
+    color: #fff !important;
+}
+.noAnchorDefaults:active{
+    color: #fff !important;
 }

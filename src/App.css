@@ -4,7 +4,13 @@
   padding: 2rem; */
   text-align: center;
 }
-
+.scaleOnHover{
+  transition: scale 0.6s;
+  cursor: pointer;
+}
+.scaleOnHover:hover{
+scale: 1.1;
+}
 .logo {
   height: 6em;
   padding: 1.5em;

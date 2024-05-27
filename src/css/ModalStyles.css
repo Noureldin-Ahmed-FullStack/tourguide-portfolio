@@ -4,7 +4,7 @@
   --gradient: linear-gradient(10deg, #ffaa00, #ff6a00);
   --gradient2: linear-gradient(15deg, #04ea00, #00d17d);
   --gradient3: linear-gradient(15deg, #b648ff, #ef5dff);
-  --gradient4: linear-gradient(to top, #b648ff00, #e51f1f5b, #b648ff00);
+  --gradient4: linear-gradient(to top, #b648ff00, #b648ff00, #b648ff00);
   font-size: 1rem;
 }
 
@@ -19,6 +19,9 @@
 }
 
 .exitAnim {
+  top: 12px;
+  right: 12px;
+  color: white;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   border-radius: 5px;
@@ -44,7 +47,8 @@
   color: black;
 }
 .MyModal {
-  width: clamp(50%, 700px, 90%);
+  /* width: clamp(50%, 700px, 90%); */
+  width: clamp(50%, 90%, 90%);
   /* height: min(50%, 300px); */
   margin: auto;
   padding: 0 1rem;

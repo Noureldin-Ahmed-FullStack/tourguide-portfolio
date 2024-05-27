@@ -172,12 +172,12 @@ export default function Modal({ handleClose, animation, children }) {
             >
                 {/* <button onClick={handleClose}>Close</button> */}
                 <div className='w-100 d-flex justify-content-end z-3 mt-2'>
+
+                </div>
+                <div className='ModalBody position-relative'>
                     <div className='p-1 exitAnim position-absolute d-flex align-items-center'>
                         <i onClick={handleClose} className="fa-solid fa-xmark biggerIcon"></i>
                     </div>
-
-                </div>
-                <div className='ModalBody'>
                     {children}
 
                 </div>

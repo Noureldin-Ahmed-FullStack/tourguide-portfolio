@@ -6,11 +6,9 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
+import FlightIcon from '@mui/icons-material/Flight';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { useState } from 'react';
 import { Tab, Tabs, ThemeProvider, createTheme } from '@mui/material';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -64,10 +62,10 @@ export default function NavDefault() {
     });
     return (
         <ThemeProvider theme={theme}>
-            <AppBar sx={{ boxShadow: 'none', top: '2rem', borderBottom: { xs: 1, md: 0 } }} color='transparent' position="absolute">
+            <AppBar sx={{ boxShadow: 'none', top: '2rem', borderBottom: { xs: 1, md: 0 }, zIndex:'4' }} color='transparent' position="absolute">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                        <FlightIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                         <Typography
                             variant="h6"
                             noWrap
@@ -123,13 +121,13 @@ export default function NavDefault() {
                                 ))}
                             </Menu>
                         </Box>
-                        <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                        <FlightIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                         <Typography
                             variant="h5"
                             noWrap
-                            component="a"
-                            href="#app-bar-with-responsive-menu"
-                            className='noAnchorDefaults'
+                            component={Link}
+                            to='/'
+                            className='noAnchorDefaults MyLink'
                             sx={{
                                 mr: 2,
                                 display: { xs: 'flex', md: 'none' },
@@ -137,7 +135,7 @@ export default function NavDefault() {
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
                                 letterSpacing: '.3rem',
-                                color: 'inherit',
+                                color: 'inherit !important',
                                 textDecoration: 'none',
                             }}
                         >
