@@ -117,7 +117,7 @@ export default function Gallery() {
         {itemData.map((item) => (
           <div key={item.img} onClick={()=>displayImage(item.img)}>
             <ImageListItem className='scaleOnHover'>
-              <ImageLoaderSkeleton modalOpen={modalOpen} width={212} height={282} src={`https://ssniper.sirv.com/TourguideProject/Gallery/${item.img}`} title={item.title} />
+              <ImageLoaderSkeleton modalOpen={modalOpen} height={282} src={`https://ssniper.sirv.com/TourguideProject/Gallery/${item.img}`} title={item.title} />
               <ImageListItemBar
                 title={item.title}
                 subtitle={item.author}

@@ -11,7 +11,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import LanguageIcon from '@mui/icons-material/Language';
 import { useState } from 'react';
-import { Badge, Tab, Tabs, ThemeProvider, createTheme } from '@mui/material';
+import { Badge, Tab, Tabs, ThemeProvider, Zoom, createTheme } from '@mui/material';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 export default function NavDefault() {
@@ -59,12 +59,9 @@ export default function NavDefault() {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-
-
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-
     const theme = createTheme({
         palette: {
             mode: 'dark'
@@ -179,7 +176,7 @@ export default function NavDefault() {
                         </Box>
 
                         <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip title="Change Language">
+                            <Tooltip TransitionComponent={Zoom} title={t('tooltips.langtooltip')}>
                                 <Badge badgeContent={CurrentLang} color='primary'>
                                     <LanguageIcon onClick={changeLanguage} className='languageIco' sx={{
                                         transition: 'transform 0.3s ease',

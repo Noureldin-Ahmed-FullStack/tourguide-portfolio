@@ -1,5 +1,8 @@
 {
     "nav":["Home","Tours","Gallery","About me","Contact"],
+    "tooltips":{
+        "langtooltip":"Change Language"
+    },
     "headers": {
         "first": "Explore Egypt!",
         "second": "Visit the Pyramids!",
@@ -15,5 +18,8 @@
         "header":"Watch this!",
         "secondHeader":"WATCH THE VIDEO",
         "subtext":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis, ut ullam? Itaque cumque dolores voluptate quia, temporibus eaque nobis laudantium totam repellat aliquam facilis nemo!"
+    },
+    "socials":{
+        "FollowMe":["Contact me on Instagram","Email me","Contact me on Whatsapp","Contact me on Telegram"]
     }
 }
