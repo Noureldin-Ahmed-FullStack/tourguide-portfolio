@@ -3,7 +3,7 @@ import React from 'react'
 import { motion } from "framer-motion";
 import '../../css/ModalStyles.css';
 import Backdrop from './Backdrop';
-export default function Modal({ handleClose, animation, children }) {
+export default function Modal({ handleClose,isMedia, animation, children }) {
     // const dropIn = {
     //     hidden: {
     //         y: "-100vh",
@@ -164,23 +164,24 @@ export default function Modal({ handleClose, animation, children }) {
         <Backdrop onClick={handleClose}>
             <motion.div
                 onClick={(e) => e.stopPropagation()}
-                className="MyModal red-gradient"
+                className={`MyModal red-gradient ${isMedia? '':'NonMedia'}`}
                 variants={selectedAnimation}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
             >
                 {/* <button onClick={handleClose}>Close</button> */}
-                <div className='w-100 d-flex justify-content-end z-3 mt-2'>
+                {/* <div className='w-100 d-flex justify-content-end z-3 mt-2'>
 
-                </div>
-                <div className='ModalBody position-relative'>
-                    <div className='p-1 exitAnim position-absolute d-flex align-items-center'>
+                </div> */}
+                <div className='w-100 d-flex justify-content-end'>
+                    <div className='p-1 exitAnim justify-content-center d-flex align-items-center'>
                         <i onClick={handleClose} className="fa-solid fa-xmark biggerIcon"></i>
                     </div>
-                    {children}
-
                 </div>
+
+                {children}
+
             </motion.div>
         </Backdrop>
     );

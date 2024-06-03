@@ -27,7 +27,8 @@
   border-radius: 5px;
 }
 .vids{
-  max-height: 90vh;
+  max-height: 85vh;
+  width: clamp(50vw, 50vw, 90%);
 
 }
 .backdrop {
@@ -44,11 +45,11 @@
   z-index: 999;
 }
 .ModalBody{
-  color: black;
+  display: inline-block;
+  width: clamp(50vw, 50vw, 90%);
 }
 .MyModal {
   /* width: clamp(50%, 700px, 90%); */
-  width: clamp(50%, 90%, 90%);
   /* height: min(50%, 300px); */
   margin: auto;
   padding: 0 1rem;
@@ -57,7 +58,9 @@
   flex-direction: column;
   align-items: center;
 }
-
+.NonMedia{
+  width: clamp(70%, 70%, 90%);
+}
 .orange-gradient {
   background: var(--gradient);
 }

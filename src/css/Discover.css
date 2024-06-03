@@ -66,6 +66,9 @@
     /* background-color: red; */
 }
 
+.vids{
+z-index: 5 !important;
+}
 .VideoBorder {
     border: rgba(255, 255, 255, 0.473) 2px solid;
     filter: brightness(85%);
@@ -78,6 +81,7 @@
 .DiscoveryBG {
     position: relative;
     height: 100vh;
+    z-index: 2;
 }
 
 .bgImage {

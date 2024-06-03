@@ -30,7 +30,7 @@ export default function Discover() {
 
 
     return (
-        <div className='w-100 z-0 DiscoveryBG'>
+        <div className='w-100  DiscoveryBG'>
             {!loaded && (
                 <ThemeProvider theme={theme}>
                     <Skeleton
@@ -84,14 +84,14 @@ export default function Discover() {
                                 mode='wait'
                                 onExitComplete={() => null}
                             >
-                                {modalOpen && <Modal modalOpen={modalOpen} animation={"dropIn"} handleClose={close} >
+                                {modalOpen && <Modal isMedia={true} modalOpen={modalOpen} animation={"dropIn"} handleClose={close} >
                                     {/* <h1>Hi, very cool!</h1> */}
                                     <video
                                         autoPlay
                                         config={{ file: { attributes: { controlsList: 'nodownload' } } }}
                                         // Disable right click
                                         onContextMenu={e => e.preventDefault()}
-                                        className='w-100 vids rounded-3' controls src={`https://ssniper.sirv.com/TourguideProject/Videos/${SelectedVideo}`}></video>
+                                        className='w-100 z-3 vids rounded-3' controls src={`https://ssniper.sirv.com/TourguideProject/Videos/${SelectedVideo}`}></video>
                                 </Modal>}
                             </AnimatePresence>
                         </div>
