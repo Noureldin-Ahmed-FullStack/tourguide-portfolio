@@ -11,16 +11,29 @@ import { AnimatePresence } from "framer-motion";
 import Modal from "./Modal Stuff/Modal";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
 // import CarouselSkelation from './CarouselSkelation';
 export default function carousel() {
+  const [Dialogue, setDialogue] = useState(false);
+
+  const handleClickDialogue = () => {
+    setDialogue(true);
+  };
+
+  const handleClose = () => {
+    setDialogue(false);
+  };
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
     Autoplay({ stopOnMouseEnter: true, stopOnInteraction: false, delay: 3500 }),
   ]);
   const [SelectedTour, setSelectedTour] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const close = () => setModalOpen(false);
-  const open = () => setModalOpen(true);
+  const close = () => setDialogue(false);
+  const open = () => setDialogue(true);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -41,31 +54,35 @@ export default function carousel() {
       Title: "luxor",
       Subtitle: "luxor Tour",
       Img: "https://ssniper.sirv.com/TourguideProject/luxor.jpg",
+      ImgArr: ['']
     },
     {
       Describtion: "",
       Title: "Mosque",
       Subtitle: "Mosque Tour",
       Img: "https://ssniper.sirv.com/TourguideProject/mosqueBig.jpg",
+      ImgArr: ['']
     },
     {
       Describtion: "",
       Title: "Pyramids",
       Subtitle: "Pyramids of Giza Tour",
       Img: "https://ssniper.sirv.com/TourguideProject/Pyramids1.jpg",
+      ImgArr: ['']
     },
     {
       Describtion: "",
       Title: "Mosque hall",
       Subtitle: "Mosque hall Tour",
       Img: "https://ssniper.sirv.com/TourguideProject/Hall.jpg",
+      ImgArr: ['']
     },
   ];
   const [isCarouselLoaded, setIsCarouselLoaded] = useState(false);
 
   const ViewTour = (Item) => {
     setSelectedTour(Item);
-    modalOpen ? close() : open();
+    Dialogue ? close() : open();
   };
   useEffect(() => {
     if (emblaRef) {
@@ -75,63 +92,92 @@ export default function carousel() {
 
   return (
     <div className="container">
-      <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
-        {modalOpen && (
-          <Modal modalOpen={modalOpen} animation={"dropIn"} handleClose={close}>
-            <div className="text-light w-100 bg-danger TourModal">
-              <div className="p-3">
-                <Carousel
-                  className="myMultiCarousel"
-                  swipeable={true}
-                  draggable={true}
-                  responsive={responsive}
-                  infinite={true}
-                  autoPlay={true}
-                  arrows={false}
-                  autoPlaySpeed={3600}
-                  keyBoardControl={true}
-                  customTransition="all .5"
-                  transitionDuration={500}
-                >
-                  <img
-                    className="w-100"
-                    src="https://ssniper.sirv.com/TourguideProject/Pyramids1.jpg"
-                    alt=""
-                  />
-                  <img
-                    className="w-100"
-                    src="https://ssniper.sirv.com/TourguideProject/luxor.jpg"
-                    alt=""
-                  />
-                  <img
-                    className="w-100"
-                    src="https://ssniper.sirv.com/TourguideProject/mosqueBig.jpg"
-                    alt=""
-                  />
-                  <img
-                    className="w-100"
-                    src="https://ssniper.sirv.com/TourguideProject/Pyramids1.jpg"
-                    alt=""
-                  />
-                  <img
-                    className="w-100"
-                    src="https://ssniper.sirv.com/TourguideProject/Pyramids1.jpg"
-                    alt=""
-                  />
-                  <img
-                    className="w-100"
-                    src="https://ssniper.sirv.com/TourguideProject/Hall.jpg"
-                    alt=""
-                  />
-                </Carousel>
-                <p className="Modal-text my-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, iste nam! Magnam beatae illo minus ipsum enim doloremque laboriosam, tenetur iure repellat optio ipsa magni ad hic, est officiis obcaecati odio fugiat ab impedit, dolor odit id quibusdam voluptate? Iusto minus eaque quae quis inventore rem voluptatem repellendus, eveniet sunt!
-                </p>
-              </div>
+      
+      <Dialog
+        open={Dialogue}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{SelectedTour?.Title}</DialogTitle>
+        <DialogContent>
+          <div className="text-light w-100 text-dark TourModal">
+            <div className="p-3">
+              <Carousel
+                className="myMultiCarousel grab"
+                swipeable={true}
+                draggable={true}
+                showDots={true}
+                responsive={responsive}
+                ssr={true} // means to render carousel on server-side.
+                infinite={true}
+                autoPlay={true}
+                autoPlaySpeed={3000}
+                keyBoardControl={true}
+                customTransition="all 2s"
+                transitionDuration={2000}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                // deviceType={this.props.deviceType}
+                dotListClass="custom-dot-list-style"
+                itemClass="carousel-item-padding-40-px"
+              >
+                <img
+                  className="w-100"
+                  src="https://ssniper.sirv.com/TourguideProject/Pyramids1.jpg"
+                  draggable={false}
+                  alt=""
+                />
+                <img
+                  className="w-100"
+                  src="https://ssniper.sirv.com/TourguideProject/luxor.jpg"
+                  draggable={false}
+                  alt=""
+                />
+                <img
+                  className="w-100"
+                  src="https://ssniper.sirv.com/TourguideProject/mosqueBig.jpg"
+                  draggable={false}
+                  alt=""
+                />
+                <img
+                  className="w-100"
+                  src="https://ssniper.sirv.com/TourguideProject/Pyramids1.jpg"
+                  draggable={false}
+                  alt=""
+                />
+                <img
+                  className="w-100"
+                  src="https://ssniper.sirv.com/TourguideProject/Pyramids1.jpg"
+                  draggable={false}
+                  alt=""
+                />
+                <img
+                  className="w-100"
+                  src="https://ssniper.sirv.com/TourguideProject/Hall.jpg"
+                  draggable={false}
+                  alt=""
+                />
+              </Carousel>
+              <p className=" my-3">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Officia, iste nam! Magnam beatae illo minus ipsum enim
+                doloremque laboriosam, tenetur iure repellat optio ipsa magni ad
+                hic, est officiis obcaecati odio fugiat ab impedit, dolor odit
+                id quibusdam voluptate? Iusto minus eaque quae quis inventore
+                rem voluptatem repellendus, eveniet sunt!
+              </p>
             </div>
-          </Modal>
-        )}
-      </AnimatePresence>
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} autoFocus>
+            close
+          </Button>
+          <Button onClick={handleClose}>Book This tour</Button>
+        </DialogActions>
+      </Dialog>
+
       {/* {isCarouselLoaded ? ( */}
       <div className="embla" ref={emblaRef}>
         <div className="embla__container">

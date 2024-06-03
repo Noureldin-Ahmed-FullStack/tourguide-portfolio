@@ -103,3 +103,6 @@
 .myMultiCarousel{
     max-height: 50vh;
 }
+.grab{
+    cursor: grab;
+}

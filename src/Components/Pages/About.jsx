@@ -6,22 +6,22 @@ import DialogActions from '@mui/material/DialogActions';
 import React, { useState } from 'react'
 
 export default function About() {
-  const [open, setOpen] = useState(false);
+  const [Dialogue, setDialogue] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClickDialogue = () => {
+    setDialogue(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setDialogue(false);
   };
   return (
     <div>
-       <Button variant="outlined" onClick={handleClickOpen}>
-        Open alert dialog
+       <Button variant="outlined" onClick={handleClickDialogue}>
+        Dialogue alert dialog
       </Button>
       <Dialog
-        open={open}
+        open={Dialogue}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
