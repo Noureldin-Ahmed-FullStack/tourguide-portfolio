@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
 import useEmblaCarousel from "embla-carousel-react";
 import "../css2/myStyleSheet.css";
 import "../css2/embla.css";
 import Autoplay from "embla-carousel-autoplay";
 import ThumbUpRoundedIcon from "@mui/icons-material/ThumbUpRounded";
-import { IconButton, ImageListItem, ImageListItemBar } from "@mui/material";
+import { IconButton, ImageListItem, ImageListItemBar, Slide, Zoom } from "@mui/material";
 import CarouselImageSkelation from "./CarouselImageSkelation";
 import { AnimatePresence } from "framer-motion";
 import Modal from "./Modal Stuff/Modal";
@@ -16,6 +16,9 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 // import CarouselSkelation from './CarouselSkelation';
+const Transition = forwardRef(function Transition(props, ref) {
+  return <Zoom direction="up" ref={ref} {...props} />;
+});
 export default function carousel() {
   const [Dialogue, setDialogue] = useState(false);
 
@@ -54,28 +57,28 @@ export default function carousel() {
       Title: "luxor",
       Subtitle: "luxor Tour",
       Img: "https://ssniper.sirv.com/TourguideProject/luxor.jpg",
-      ImgArr: ['']
+      ImgArr: [""],
     },
     {
       Describtion: "",
       Title: "Mosque",
       Subtitle: "Mosque Tour",
       Img: "https://ssniper.sirv.com/TourguideProject/mosqueBig.jpg",
-      ImgArr: ['']
+      ImgArr: [""],
     },
     {
       Describtion: "",
       Title: "Pyramids",
       Subtitle: "Pyramids of Giza Tour",
       Img: "https://ssniper.sirv.com/TourguideProject/Pyramids1.jpg",
-      ImgArr: ['']
+      ImgArr: [""],
     },
     {
       Describtion: "",
       Title: "Mosque hall",
       Subtitle: "Mosque hall Tour",
       Img: "https://ssniper.sirv.com/TourguideProject/Hall.jpg",
-      ImgArr: ['']
+      ImgArr: [""],
     },
   ];
   const [isCarouselLoaded, setIsCarouselLoaded] = useState(false);
@@ -92,9 +95,9 @@ export default function carousel() {
 
   return (
     <div className="container">
-      
       <Dialog
         open={Dialogue}
+        TransitionComponent={Transition}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"

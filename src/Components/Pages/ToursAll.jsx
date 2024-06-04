@@ -1,5 +1,6 @@
-import {} from "@mui/material";
-import React, { useState } from "react";
+import { Slide } from "@mui/material";
+import React, { forwardRef, useState } from "react";
+
 import {
   useTheme,
   Button,
@@ -16,7 +17,9 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ImageLoaderSkeleton from "../ImageLoaderSkeleton";
-
+const Transition = forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 export default function ToursAll() {
   const [modalOpen, setModalOpen] = useState(false);
   const [SelectedImage, setSelectedImage] = useState(false);
@@ -27,7 +30,7 @@ export default function ToursAll() {
     modalOpen ? close() : open();
   };
   const handleClose = () => {
-    close();
+    setModalOpen(false)
   };
   const itemData = [
     {
@@ -126,6 +129,7 @@ export default function ToursAll() {
             backgroundColor: "transparent", // Change to your desired color
           },
         }}
+        TransitionComponent={Transition}
         fullWidth={true}
         maxWidth={"lg"}
         open={modalOpen}

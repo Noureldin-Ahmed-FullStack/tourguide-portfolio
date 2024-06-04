@@ -9,13 +9,20 @@ import {
   ImageListItem,
   ImageListItemBar,
   ListSubheader,
+  Slide,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import ImageLoaderSkeleton from "../ImageLoaderSkeleton";
+const Transition = forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 export default function Gallery() {
+
+ 
+
   const itemData = [
     {
       img: "1.jpg",
@@ -99,7 +106,7 @@ export default function Gallery() {
     modalOpen ? close() : open();
   };
   const handleClose = () => {
-    close();
+    setModalOpen(false)
   };
   const isXs = useMediaQuery(theme.breakpoints.down("xs"));
   const isSm = useMediaQuery(theme.breakpoints.down("sm"));
@@ -124,6 +131,7 @@ export default function Gallery() {
             backgroundColor: "transparent", // Change to your desired color
           },
         }}
+        TransitionComponent={Transition}
         fullWidth={true}
         maxWidth={'lg'}
         open={modalOpen}
