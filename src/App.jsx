@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavDefault from './Components/NavDefault';
 import ToursAll from './Components/Pages/ToursAll';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Main from './Components/Main';
 import Gallery from './Components/Pages/Gallery';
 import About from './Components/Pages/About';
@@ -105,7 +105,7 @@ function App() {
         options={options}
         />
       <div className='z-0'>
-        <Router basename='tourguide-portfolio'>
+        <Router>
           <NavDefault />
           <Routes>
             <Route path="/" element={<Main />} />

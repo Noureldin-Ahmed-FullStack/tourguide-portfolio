@@ -15,6 +15,8 @@ import { DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
+import { EmojiTransportation } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 // import CarouselSkelation from './CarouselSkelation';
 const Transition = forwardRef(function Transition(props, ref) {
   return <Zoom direction="up" ref={ref} {...props} />;
@@ -51,36 +53,10 @@ export default function carousel() {
       items: 1,
     },
   };
-  const ImageArr = [
-    {
-      Describtion: "",
-      Title: "luxor",
-      Subtitle: "luxor Tour",
-      Img: "https://ssniper.sirv.com/TourguideProject/luxor.jpg",
-      ImgArr: [""],
-    },
-    {
-      Describtion: "",
-      Title: "Mosque",
-      Subtitle: "Mosque Tour",
-      Img: "https://ssniper.sirv.com/TourguideProject/mosqueBig.jpg",
-      ImgArr: [""],
-    },
-    {
-      Describtion: "",
-      Title: "Pyramids",
-      Subtitle: "Pyramids of Giza Tour",
-      Img: "https://ssniper.sirv.com/TourguideProject/Pyramids1.jpg",
-      ImgArr: [""],
-    },
-    {
-      Describtion: "",
-      Title: "Mosque hall",
-      Subtitle: "Mosque hall Tour",
-      Img: "https://ssniper.sirv.com/TourguideProject/Hall.jpg",
-      ImgArr: [""],
-    },
-  ];
+  const [t, i18n] = useTranslation("global");
+  const Excursions = t('Excursions', { returnObjects: true });
+  console.log({Excursions});
+
   const [isCarouselLoaded, setIsCarouselLoaded] = useState(false);
 
   const ViewTour = (Item) => {
@@ -102,8 +78,9 @@ export default function carousel() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{SelectedTour?.Title}</DialogTitle>
-        <DialogContent>
+        <DialogTitle className="pb-0" id="alert-dialog-title">{SelectedTour?.Title}</DialogTitle>
+        <span className="px-4">{SelectedTour?.Subtitle}</span>
+        <DialogContent sx={{paddingTop:'0.2rem'}}>
           <div className="text-light w-100 text-dark TourModal">
             <div className="p-3">
               <Carousel
@@ -162,14 +139,24 @@ export default function carousel() {
                   alt=""
                 />
               </Carousel>
-              <p className=" my-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Officia, iste nam! Magnam beatae illo minus ipsum enim
-                doloremque laboriosam, tenetur iure repellat optio ipsa magni ad
-                hic, est officiis obcaecati odio fugiat ab impedit, dolor odit
-                id quibusdam voluptate? Iusto minus eaque quae quis inventore
-                rem voluptatem repellendus, eveniet sunt!
-              </p>
+              {SelectedTour?.Idea && (
+                <>
+                <h4 className="mt-3">Idea</h4>
+                <p style={{ whiteSpace: "pre-line" }}>{SelectedTour.Idea}</p>
+                </>
+            )}
+            {SelectedTour?.Route && (
+              <>
+              <h4 className="mt-3">Route</h4>
+              <p style={{ whiteSpace: "pre-line" }}>{SelectedTour.Route}</p>
+              </>
+          )}
+            {SelectedTour?.MeetingPoint && (
+              <>
+              <h4 className="mt-3">Meeting Point</h4>
+              <p style={{ whiteSpace: "pre-line" }}>{SelectedTour.MeetingPoint}</p>
+              </>
+          )}
             </div>
           </div>
         </DialogContent>
@@ -185,7 +172,7 @@ export default function carousel() {
       <div className="embla" ref={emblaRef}>
         <div className="embla__container">
           {/* <div className="embla__slide"><img className='embla__slide__img' src="./Images/Pyramids.jpg" /></div> */}
-          {ImageArr.map((item) => (
+          {Excursions.map((item) => (
             <div
               key={item.Title}
               onClick={() => ViewTour(item)}

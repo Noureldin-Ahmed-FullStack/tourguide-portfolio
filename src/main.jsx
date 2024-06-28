@@ -15,9 +15,9 @@ i18next.use(initReactI18next).init({
   }
 })
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <I18nextProvider i18next={i18next}>
       <App />
     </I18nextProvider>
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )
