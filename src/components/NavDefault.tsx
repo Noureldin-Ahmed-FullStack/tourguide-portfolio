@@ -25,7 +25,7 @@ export default function NavDefault() {
         // i18n.changeLanguage(lang)
     }
     const pages = [
-        { text: navText[0], path: '' }, { text: navText[1], path: 'Tours' }, { text: navText[2], path: 'Gallery' }, { text: navText[3], path: 'About' }, { text: navText[4], path: 'Contact' }];
+        { text: navText[0], path: '' }, { text: navText[1], path: 'Tours' }, { text: navText[2], path: 'Gallery' }, { text: navText[3], path: 'About' }];
     const [anchorElNav, setAnchorElNav] = useState<HTMLElement | null>(null);
     // const [anchorElUser, setAnchorElUser] = useState(null);
     // const handleOpenUserMenu = (event) => {
@@ -171,7 +171,7 @@ export default function NavDefault() {
                                 <Tab onClick={() => GoToPage('./tours')} label={navText[1]} value={2} />
                                 <Tab onClick={() => GoToPage('./gallery')} label={navText[2]} value={3} />
                                 <Tab onClick={() => GoToPage('./about')} label={navText[3]} value={4} />
-                                <Tab onClick={() => GoToPage('./contact')} label={navText[4]} value={5} />
+                                {/* <Tab onClick={() => GoToPage('./contact')} label={navText[4]} value={5} /> */}
                             </Tabs>
                         </Box>
 

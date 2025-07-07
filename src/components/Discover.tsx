@@ -75,7 +75,7 @@ export default function Discover() {
                     justifyContent="space-evenly"
                     alignItems="flex-start"
                 >
-                    <Grid className='text-start'>
+                    <Grid className='text-start max-w-sm sm:max-w-none mx-auto'>
                         <h1>{t('discover.header')}</h1>
                         <div className='d-flex align-items-center mb-3'>
                             <i onClick={() => startVideo('Instagram.mp4')} className="fa-regular fa-circle-play watchButton"></i> <h5 className='mb-0 ms-2'>{t('discover.secondHeader')}</h5>
@@ -104,19 +104,19 @@ export default function Discover() {
                             </CustomDialog>
                         </div>
                         <Grid container alignItems={"center"} justifyContent="space-between">
-                            <Grid size={{ xs: 12, sm: 6, md: 4 }} order={{ xs: 1, sm: 0, md: 0 }}>{t('discover.subtext')}</Grid>
+                            <Grid className="mt-5 sm:mt-0" size={{ xs: 12, sm: 6, md: 4 }} order={{ xs: 1, sm: 0, md: 0 }}>{t('discover.subtext')}</Grid>
                             <Grid size={{ xs: 12, sm: 6, md: 6 }}>
                                 <Grid container spacing={2} justifyContent={"center"}>
                                     <Grid size={{ xs: 12, sm: 7, md: 6 }}>
-                                        <div onClick={() => startVideo('Vid1.mp4')} className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
+                                        <div onClick={() => startVideo('Vid1.mp4')} className='max-w-60 mx-auto overlay-container rounded-4 ScaleOnHover VideoBorder'>
                                             <img src="https://ssniper.sirv.com/TourguideProject/Gallery/thumbnail1.jpg" style={{ aspectRatio: "4/3" }} className=' w-100 ' alt="" />
                                             <div className="overlay">
                                                 <i className="fa-regular fa-circle-play watchButton"></i>
                                             </div>
                                         </div>
                                     </Grid>
-                                    <Grid size={{ xs: 12, sm: 7, md: 6 }}>
-                                        <div onClick={() => startVideo('Vid2.mp4')} className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
+                                    <Grid className="" size={{ xs: 12, sm: 7, md: 6 }}>
+                                        <div onClick={() => startVideo('Vid2.mp4')} className='max-w-60 mx-auto overlay-container rounded-4 ScaleOnHover VideoBorder'>
                                             <img src="https://ssniper.sirv.com/TourguideProject/Gallery/thumbnail2.jpg" style={{ aspectRatio: "4/3" }} className=' w-100 ' alt="" />
                                             <div className="overlay">
                                                 <i className="fa-regular fa-circle-play watchButton"></i>
@@ -128,11 +128,11 @@ export default function Discover() {
                         </Grid>
 
                     </Grid>
-                    <ThemeProvider theme={theme}>
+                    {/* <ThemeProvider theme={theme}>
                         <Socials />
 
 
-                    </ThemeProvider>
+                    </ThemeProvider> */}
                 </Grid>
 
             </div>

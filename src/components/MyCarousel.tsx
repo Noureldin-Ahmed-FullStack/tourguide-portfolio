@@ -1,32 +1,33 @@
-import React, { forwardRef, useEffect, useState } from "react";
+import React, { useState } from "react";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
 import useEmblaCarousel from "embla-carousel-react";
 import "../css2/myStyleSheet.css";
 import "../css2/embla.css";
 import Autoplay from "embla-carousel-autoplay";
 import ThumbUpRoundedIcon from "@mui/icons-material/ThumbUpRounded";
-import { IconButton, ImageListItem, ImageListItemBar, Slide, Zoom } from "@mui/material";
+import { IconButton, ImageListItem, ImageListItemBar, Slide } from "@mui/material";
 import CarouselImageSkelation from "./CarouselImageSkelation";
-import { AnimatePresence } from "framer-motion";
-import Modal from "./Modal Stuff/Modal";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { DialogContent, DialogTitle } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
-import { EmojiTransportation } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
+import { TransitionProps } from "@mui/material/transitions";
 // import CarouselSkelation from './CarouselSkelation';
-const Transition = forwardRef(function Transition(props, ref) {
-  return <Zoom direction="up" ref={ref} {...props} />;
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement<any, any>;
+  },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
 });
+
 export default function carousel() {
   const [Dialogue, setDialogue] = useState(false);
 
-  const handleClickDialogue = () => {
-    setDialogue(true);
-  };
 
   const handleClose = () => {
     setDialogue(false);
@@ -34,8 +35,7 @@ export default function carousel() {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
     Autoplay({ stopOnMouseEnter: true, stopOnInteraction: false, delay: 3500 }),
   ]);
-  const [SelectedTour, setSelectedTour] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [SelectedTour, setSelectedTour] = useState<any>(null);
 
   const close = () => setDialogue(false);
   const open = () => setDialogue(true);
@@ -53,21 +53,16 @@ export default function carousel() {
       items: 1,
     },
   };
-  const [t, i18n] = useTranslation("global");
-  const Excursions = t('Excursions', { returnObjects: true });
-  console.log({Excursions});
+  const [t] = useTranslation("global");
+  const Excursions = t('Excursions', { returnObjects: true }) as any;
+  console.log({ Excursions });
 
-  const [isCarouselLoaded, setIsCarouselLoaded] = useState(false);
 
-  const ViewTour = (Item) => {
+  const ViewTour = (Item: any) => {
     setSelectedTour(Item);
     Dialogue ? close() : open();
   };
-  useEffect(() => {
-    if (emblaRef) {
-      setIsCarouselLoaded(true);
-    }
-  }, [emblaRef]);
+
 
   return (
     <div className="container">
@@ -80,8 +75,8 @@ export default function carousel() {
       >
         <DialogTitle className="pb-0" id="alert-dialog-title">{SelectedTour?.Title}</DialogTitle>
         <span className="px-4">{SelectedTour?.Subtitle}</span>
-        <DialogContent sx={{paddingTop:'0.2rem'}}>
-          <div className="text-light w-100 text-dark TourModal">
+        <DialogContent sx={{ paddingTop: '0.2rem' }}>
+          <div className="!text-zinc-200 w-100 TourModal">
             <div className="p-3">
               <Carousel
                 className="myMultiCarousel grab"
@@ -141,22 +136,22 @@ export default function carousel() {
               </Carousel>
               {SelectedTour?.Idea && (
                 <>
-                <h4 className="mt-3">Idea</h4>
-                <p style={{ whiteSpace: "pre-line" }}>{SelectedTour.Idea}</p>
+                  <h4 className="mt-3">Idea</h4>
+                  <p style={{ whiteSpace: "pre-line" }}>{SelectedTour.Idea}</p>
                 </>
-            )}
-            {SelectedTour?.Route && (
-              <>
-              <h4 className="mt-3">Route</h4>
-              <p style={{ whiteSpace: "pre-line" }}>{SelectedTour.Route}</p>
-              </>
-          )}
-            {SelectedTour?.MeetingPoint && (
-              <>
-              <h4 className="mt-3">Meeting Point</h4>
-              <p style={{ whiteSpace: "pre-line" }}>{SelectedTour.MeetingPoint}</p>
-              </>
-          )}
+              )}
+              {SelectedTour?.Route && (
+                <>
+                  <h4 className="mt-3">Route</h4>
+                  <p style={{ whiteSpace: "pre-line" }}>{SelectedTour.Route}</p>
+                </>
+              )}
+              {SelectedTour?.MeetingPoint && (
+                <>
+                  <h4 className="mt-3">Meeting Point</h4>
+                  <p style={{ whiteSpace: "pre-line" }}>{SelectedTour.MeetingPoint}</p>
+                </>
+              )}
             </div>
           </div>
         </DialogContent>
@@ -172,7 +167,7 @@ export default function carousel() {
       <div className="embla" ref={emblaRef}>
         <div className="embla__container">
           {/* <div className="embla__slide"><img className='embla__slide__img' src="./Images/Pyramids.jpg" /></div> */}
-          {Excursions.map((item) => (
+          {Excursions.map((item: any) => (
             <div
               key={item.Title}
               onClick={() => ViewTour(item)}
