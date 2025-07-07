@@ -16,7 +16,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 export default function NavDefault() {
     const [t, i18n] = useTranslation("global");
-    const navText = t('nav', { returnObjects: true });
+    const navText: any = t('nav', { returnObjects: true });
     const [CurrentLang, setCurrentLang] = useState(i18n.language);
     const changeLanguage = () => {
         console.log(i18n.language);
@@ -26,7 +26,7 @@ export default function NavDefault() {
     }
     const pages = [
         { text: navText[0], path: '' }, { text: navText[1], path: 'Tours' }, { text: navText[2], path: 'Gallery' }, { text: navText[3], path: 'About' }, { text: navText[4], path: 'Contact' }];
-    const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElNav, setAnchorElNav] = useState<HTMLElement | null>(null);
     // const [anchorElUser, setAnchorElUser] = useState(null);
     // const handleOpenUserMenu = (event) => {
     //     setAnchorElUser(event.currentTarget);
@@ -37,7 +37,7 @@ export default function NavDefault() {
     let navigate = useNavigate()
 
     const location = useLocation();
-    const getTabValue = (pathname) => {
+    const getTabValue = (pathname: string) => {
         switch (pathname) {
             case './':
                 return 1;
@@ -53,10 +53,10 @@ export default function NavDefault() {
                 return 1;
         }
     };
-    const GoToPage = (link) => {
+    const GoToPage = (link: string) => {
         navigate(link);
     }
-    const handleOpenNavMenu = (event) => {
+    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
     const handleCloseNavMenu = () => {

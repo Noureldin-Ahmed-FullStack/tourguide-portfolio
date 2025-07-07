@@ -1,5 +1,5 @@
 import { Slide } from "@mui/material";
-import React, { forwardRef, useState } from "react";
+import React, {  useState } from "react";
 
 import {
   useTheme,
@@ -7,17 +7,21 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle,
   IconButton,
   ImageList,
   ImageListItem,
   ImageListItemBar,
-  ListSubheader,
   useMediaQuery,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ImageLoaderSkeleton from "../ImageLoaderSkeleton";
-const Transition = forwardRef(function Transition(props, ref) {
+import { TransitionProps } from "@mui/material/transitions";
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement<any, any>;
+  },
+  ref: React.Ref<unknown>,
+) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 export default function ToursAll() {
@@ -25,7 +29,7 @@ export default function ToursAll() {
   const [SelectedImage, setSelectedImage] = useState(false);
   const close = () => setModalOpen(false);
   const open = () => setModalOpen(true);
-  const displayImage = (image) => {
+  const displayImage = (image : any) => {
     setSelectedImage(image);
     modalOpen ? close() : open();
   };

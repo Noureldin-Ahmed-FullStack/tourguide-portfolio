@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import { motion } from "framer-motion";
 import '../../css/ModalStyles.css';
 import Backdrop from './Backdrop';
-export default function Modal({ handleClose,isMedia, animation, children }) {
+interface props{
+    handleClose : ()=> void,
+    isMedia : boolean, 
+    animation : string, 
+    children : ReactNode
+}
+export default function Modal(props:props) {
+    const { handleClose,isMedia, animation, children } = props
     // const dropIn = {
     //     hidden: {
     //         y: "-100vh",
@@ -91,7 +98,7 @@ export default function Modal({ handleClose,isMedia, animation, children }) {
     //         opacity: 0,
     //     },
     // };
-    const animations = {
+    const animations: any = {
         dropIn: {
             hidden: {
                 y: "-100vh",

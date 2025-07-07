@@ -2,16 +2,15 @@ import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavDefault from './Components/NavDefault';
-import ToursAll from './Components/Pages/ToursAll';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
-import Main from './Components/Main';
-import Gallery from './Components/Pages/Gallery';
-import About from './Components/Pages/About';
-import Contact from './Components/Pages/Contact';
+import Main from './components/Main';
+import Gallery from './components/Pages/Gallery';
+import Contact from './components/Pages/Contact';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
-import particlesConfig from '../src/assets/particles.json'; // Adjust the path as needed
+import NavDefault from './components/NavDefault';
+import About from './components/Pages/About';
+import ToursAll from './components/Pages/ToursAll';
 
 
 function App() {
@@ -75,7 +74,7 @@ function App() {
           value: { min: 1, max: 5 }
         }
       }
-}))
+}),[])
   useEffect(() => {
     if (init) {
       return;
@@ -87,22 +86,12 @@ function App() {
       setInit(true);
     });
   }, []);
-  const { darkMode, setDarkmode } = useState(true);
-  const setDarkmodeFunc = () => {
-    setDarkmode(false);
-    document.querySelector("body").setAttribute('data-theme', 'dark')
-    const theme = localStorage.setItem('theme', "dark")
-  }
-  const setLightmodeFunc = () => {
-    setDarkmode(true);
-    document.querySelector("body").setAttribute('data-theme', 'light')
-    const theme = localStorage.setItem('theme', "light")
-  }
+  
   return (
-    <div className="main-container">
+    <div className="main-container text-zinc-100">
       <Particles
         id="tsparticles"
-        options={options}
+        options={options as any}
         />
       <div className='z-0'>
         <Router>

@@ -1,20 +1,19 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import '../css/Discover.css'
-import { Grid, Skeleton, ThemeProvider, createTheme } from '@mui/material'
-import { AnimatePresence, motion } from "framer-motion";
+import { Skeleton, ThemeProvider, createTheme } from '@mui/material'
+import { AnimatePresence } from "framer-motion";
+import Grid from '@mui/material/Grid';
+import { useTranslation } from 'react-i18next';
 import Socials from './Socials';
 import Modal from './Modal Stuff/Modal';
-import { useTranslation } from 'react-i18next';
+import CustomDialog from './ui/ModalWithChildren';
 export default function Discover() {
-    const [modalOpen, setModalOpen] = useState(false);
     const [SelectedVideo, setSelectedVideo] = useState('Vid1.mp4');
-    const [t, i18n] = useTranslation("global");
+    const [t] = useTranslation("global");
 
-    const close = () => setModalOpen(false);
-    const open = () => setModalOpen(true);
-    const startVideo = (video) =>{
+    const startVideo = (video: any) => {
         setSelectedVideo(video)
-        modalOpen ? close() : open()
+        isDialogOpen ? setIsDialogOpen(false) : setIsDialogOpen(true)
     }
     const [loaded, setLoaded] = useState(false);
 
@@ -28,6 +27,18 @@ export default function Discover() {
         },
     });
 
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [pendingRequest, setPendingRequest] = useState(false)
+    const handleOpenDialog = () => {
+        setIsDialogOpen(true)
+    };
+    const handleCloseDialog = () => {
+        setIsDialogOpen(false)
+    };
+    const handleConfirmAction = async () => {
+        console.log("modal testing");
+
+    }
 
     return (
         <div className='w-100  DiscoveryBG'>
@@ -64,52 +75,49 @@ export default function Discover() {
                     justifyContent="space-evenly"
                     alignItems="flex-start"
                 >
-                    <Grid item className='text-start'>
+                    <Grid className='text-start'>
                         <h1>{t('discover.header')}</h1>
                         <div className='d-flex align-items-center mb-3'>
-                            {/* <PlayCircleOutlinedIcon sx={{ fontSize: "3.5rem" ,transition: 'transform 0.5s'}} className='watchButton' /> <h5 className='mb-0 ms-1'>WATCH THE VIDEO</h5> */}
-                            <i onClick={() => startVideo('Vid2.mp4')} className="fa-regular fa-circle-play watchButton"></i> <h5 className='mb-0 ms-2'>{t('discover.secondHeader')}</h5>
+                            <i onClick={() => startVideo('Instagram.mp4')} className="fa-regular fa-circle-play watchButton"></i> <h5 className='mb-0 ms-2'>{t('discover.secondHeader')}</h5>
                         </div>
                         <div>
-                            {/* <motion.button
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                className="save-button"
-                                onClick={() => (modalOpen ? close() : open())}
+
+
+                            <CustomDialog
+                                open={isDialogOpen}
+                                onClose={handleCloseDialog}
+                                isDisabled={pendingRequest}
+                                isLoading={pendingRequest}
+                                onConfirm={() => handleConfirmAction()}
+                                title="Create a art peice request!"
+                                confirmColor='primary'
+                                confirmText="Confirm"
+                                className="overflow-y-hidden !w-fit"
+                                cancelText="cancel"
                             >
-                                Launch modal
-                            </motion.button> */}
-                            <AnimatePresence
-                                initial={false}
-                                mode='wait'
-                                onExitComplete={() => null}
-                            >
-                                {modalOpen && <Modal isMedia={true} modalOpen={modalOpen} animation={"dropIn"} handleClose={close} >
-                                    {/* <h1>Hi, very cool!</h1> */}
-                                    <video
-                                        autoPlay
-                                        config={{ file: { attributes: { controlsList: 'nodownload' } } }}
-                                        // Disable right click
-                                        onContextMenu={e => e.preventDefault()}
-                                        className='w-100 z-3 vids rounded-3' controls src={`https://ssniper.sirv.com/TourguideProject/Videos/${SelectedVideo}`}></video>
-                                </Modal>}
-                            </AnimatePresence>
+                                <video
+                                    autoPlay
+                                    // config={{ file: { attributes: { controlsList: 'nodownload' } } }}
+                                    // Disable right click
+                                    onContextMenu={e => e.preventDefault()}
+                                    className='max-h-[70vh] z-3 vids rounded-3' controls src={`https://ssniper.sirv.com/TourguideProject/Videos/${SelectedVideo}`}></video>
+                            </CustomDialog>
                         </div>
                         <Grid container alignItems={"center"} justifyContent="space-between">
-                            <Grid item order={{ xs: 1, sm: 0, md: 0 }} xs={12} sm={6} md={4}>{t('discover.subtext')}</Grid>
-                            <Grid item xs={12} sm={6} md={6}>
+                            <Grid size={{ xs: 12, sm: 6, md: 4 }} order={{ xs: 1, sm: 0, md: 0 }}>{t('discover.subtext')}</Grid>
+                            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
                                 <Grid container spacing={2} justifyContent={"center"}>
-                                    <Grid item xs={6} sm={7} md={6}>
+                                    <Grid size={{ xs: 12, sm: 7, md: 6 }}>
                                         <div onClick={() => startVideo('Vid1.mp4')} className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
-                                            <img src="https://ssniper.sirv.com/TourguideProject/Gallery/thumbnail1.jpg" style={{aspectRatio:"4/3"}} className=' w-100 ' alt="" />
+                                            <img src="https://ssniper.sirv.com/TourguideProject/Gallery/thumbnail1.jpg" style={{ aspectRatio: "4/3" }} className=' w-100 ' alt="" />
                                             <div className="overlay">
                                                 <i className="fa-regular fa-circle-play watchButton"></i>
                                             </div>
                                         </div>
                                     </Grid>
-                                    <Grid item xs={6} sm={7} md={6}>
+                                    <Grid size={{ xs: 12, sm: 7, md: 6 }}>
                                         <div onClick={() => startVideo('Vid2.mp4')} className='overlay-container rounded-4 ScaleOnHover VideoBorder'>
-                                            <img src="https://ssniper.sirv.com/TourguideProject/Gallery/thumbnail2.jpg" style={{aspectRatio:"4/3"}} className=' w-100 ' alt="" />
+                                            <img src="https://ssniper.sirv.com/TourguideProject/Gallery/thumbnail2.jpg" style={{ aspectRatio: "4/3" }} className=' w-100 ' alt="" />
                                             <div className="overlay">
                                                 <i className="fa-regular fa-circle-play watchButton"></i>
                                             </div>
