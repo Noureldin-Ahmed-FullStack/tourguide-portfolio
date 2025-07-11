@@ -4,8 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import "../css2/myStyleSheet.css";
 import "../css2/embla.css";
 import Autoplay from "embla-carousel-autoplay";
-import ThumbUpRoundedIcon from "@mui/icons-material/ThumbUpRounded";
-import { IconButton, ImageListItem, ImageListItemBar, Slide } from "@mui/material";
+import { ImageListItem, ImageListItemBar, Slide, TextField } from "@mui/material";
 import CarouselImageSkelation from "./CarouselImageSkelation";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -15,6 +14,12 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import { useTranslation } from "react-i18next";
 import { TransitionProps } from "@mui/material/transitions";
+import CustomDialog from "./ui/ModalWithChildren";
+import axios from "axios";
+import { toast } from "react-toastify";
+const BaseURL = import.meta.env.VITE_BASE_URL;
+const ClientMail = import.meta.env.VITE_CLIENT_MAIL;
+const MyMail = import.meta.env.VITE_MY_MAIL;
 // import CarouselSkelation from './CarouselSkelation';
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -27,15 +32,80 @@ const Transition = React.forwardRef(function Transition(
 
 export default function carousel() {
   const [Dialogue, setDialogue] = useState(false);
+  const [formData, setFormData] = useState({
+    userEmail: "",
+    userPhone: "",
+    userMessage: ""
+  });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+  const [SelectedTour, setSelectedTour] = useState<any>(null);
+  const [pending, setPending] = useState(false)
+  const data = {
+    userEmail: formData.userEmail,
+    userPhone: formData.userPhone,
+    userMessage: formData.userMessage,
+    excursion: {
+      title: SelectedTour?.Title,
+      describtion: SelectedTour?.Subtitle,
+      Images: [SelectedTour?.Img],
+    },
+    reciver: [ClientMail, MyMail]
+  };
+  const handleConfirmAction = async () => {
+    setPending(true)
+    try {
+      const response = await axios.post(BaseURL + '/contactMe', data);
+      console.log('Success:', response);
+      setPending(false)
+      toast.success("message sent!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } catch (error) {
+      setPending(false)
+      toast.error("an error has occured", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      console.error('Error:', error);
+    }
+    handleCloseDialog();
+  };
 
-
+  const [isCustomDialogOpen, setIsCustomDialogOpen] = useState(false);
+  const [_anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const handleOpenDialog = () => {
+    setAnchorEl(null)
+    setIsCustomDialogOpen(true)
+  };
+  const handleCloseDialog = () => {
+    setAnchorEl(null)
+    setIsCustomDialogOpen(false)
+  };
   const handleClose = () => {
     setDialogue(false);
   };
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
     Autoplay({ stopOnMouseEnter: true, stopOnInteraction: false, delay: 3500 }),
   ]);
-  const [SelectedTour, setSelectedTour] = useState<any>(null);
 
   const close = () => setDialogue(false);
   const open = () => setDialogue(true);
@@ -139,10 +209,44 @@ export default function carousel() {
           <Button onClick={handleClose} autoFocus>
             close
           </Button>
-          <Button onClick={handleClose}>Book This tour</Button>
+          <Button onClick={handleOpenDialog}>Book This tour</Button>
         </DialogActions>
       </Dialog>
+      <CustomDialog
+        open={isCustomDialogOpen}
+        onClose={handleCloseDialog}
+        onConfirm={() => handleConfirmAction()}
+        title={"Book " + SelectedTour?.Title}
+        confirmColor='primary'
+        isLoading={pending}
+        confirmText="Send Booking Message"
+        cancelText="cancel"
+      >
+        <form className="mt-3">
+          <div className="text-center md:text-left">
+            <div className=''>
+              <div className="grid grid-cols-2 gap-2 mb-2">
+                <TextField
+                  value={formData.userEmail}
+                  onChange={handleChange} required id="userEmail" label="Your email" type='email' variant="outlined" />
+                <TextField
+                  value={formData.userPhone}
+                  onChange={handleChange} required id="userPhone" label="Your Whatsapp number" type='tel' variant="outlined" />
+              </div>
+              <TextField
+                fullWidth
+                id="userMessage"
+                label="Message"
+                multiline
+                value={formData.userMessage}
+                onChange={handleChange}
+                rows={4}
+              />
+            </div>
+          </div>
 
+        </form>
+      </CustomDialog>
       {/* {isCarouselLoaded ? ( */}
       <div className="embla" ref={emblaRef}>
         <div className="embla__container">

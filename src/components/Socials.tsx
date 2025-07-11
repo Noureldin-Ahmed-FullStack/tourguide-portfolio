@@ -40,7 +40,7 @@ export default function Socials() {
           </a>
         </Grid>
         <Grid>
-          <a className='MyLink TeleLink' target='_blank' href='https://t.me/NoureldinAhmedFullstack'>
+          <a className='MyLink TeleLink' target='_blank' href='https://t.me/+201012022433'>
             <Tooltip arrow followCursor={true} placement='top' TransitionComponent={Zoom} title={socials[3]}>
               <TelegramIcon className='' sx={{ fontSize: "2.3rem" }} />
             </Tooltip>

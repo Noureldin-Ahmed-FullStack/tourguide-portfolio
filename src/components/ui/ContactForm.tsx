@@ -5,7 +5,8 @@ import { toast } from 'react-toastify';
 
 export default function ContactForm() {
     const [pending, setPending] = useState(false)
-    const testMail = import.meta.env.VITE_MY_MAIL;
+    const ClientMail = import.meta.env.VITE_CLIENT_MAIL;
+    const MyMail = import.meta.env.VITE_MY_MAIL;
     const BaseURL = import.meta.env.VITE_BASE_URL;
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -16,7 +17,7 @@ export default function ContactForm() {
             userPhone: (form.elements.namedItem('userPhone') as HTMLInputElement).value,
             userMessage: (form.elements.namedItem('userMessage') as HTMLTextAreaElement).value,
             excursion: null,
-            reciver: testMail
+            reciver: [ClientMail, MyMail]
         };
         form.reset();
 

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function BigBG() {
   const [loaded, setLoaded] = useState(false);
-  const [t] = useTranslation("global");
+  const [t, i18n] = useTranslation("global");
   const handleImageLoad = () => {
     console.log('Image loaded');
     setLoaded(true);
@@ -51,33 +51,56 @@ export default function BigBG() {
       >
         <Grid item></Grid>
         <Grid item className=''>
-          <TypeAnimation
-            className=' typer'
-            sequence={[
-              t("headers.first"),
-              2000,
-              t("headers.second"),
-              1000,
-              t("headers.third"),
-              1000,
-              t("headers.fourth"),
-              1000,
-              t("headers.fifth"),
-              1000,
-              t("headers.sixth"),
-              1000,
-            ]}
-            wrapper="h1"
-            speed={50}
-            style={{ fontSize: '4rem', display: 'inline-block' }}
-            repeat={Infinity}
-          />
-          <Grid container spacing={2}>
-            <Grid className='text-start typerSubtext' item xs={12} sm={6} md={6}>
-              <h4>{t("headerSubText")}</h4>
-              <h5>{t("headerSmallSubText")}</h5>
-            </Grid>
-          </Grid>
+          {i18n.language == 'en' ? (
+            <TypeAnimation
+              className=' typer'
+              sequence={[
+                "Explore Egypt!",
+                2000,
+                "Visit the Pyramids!",
+                1000,
+                "Great Selection of Tours",
+                1000,
+                "Local Insights",
+                1000,
+                "Personalized Tours",
+                1000,
+                "Unforgettable Memories",
+                1000,
+              ]}
+              wrapper="h1"
+              speed={50}
+              style={{ fontSize: '4rem', display: 'inline-block' }}
+              repeat={Infinity}
+            />
+          ) : (
+            <TypeAnimation
+              className=' typer'
+              sequence={[
+                "Исследуй Египет!",
+                2000,
+                "Посети пирамиды!",
+                1000,
+                "Большой выбор туров",
+                1000,
+                "Местные знания",
+                1000,
+                "Индивидуальные туры",
+                1000,
+                "Незабываемые впечатления",
+                1000,
+              ]}
+              wrapper="h1"
+              speed={50}
+              style={{ fontSize: '4rem', display: 'inline-block' }}
+              repeat={Infinity}
+            />
+          )}
+
+          <div className='text-start w-full md:w-4/5'>
+            <h4>{t("headerSubText")}</h4>
+            <h5>{t("headerSmallSubText")}</h5>
+          </div>
         </Grid>
 
         <ThemeProvider theme={theme}>

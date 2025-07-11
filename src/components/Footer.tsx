@@ -8,6 +8,7 @@ import ContactForm from './ui/ContactForm';
 import { useLocation } from 'react-router-dom';
 export default function Footer() {
     const location = useLocation();
+    const cleintMail = import.meta.env.VITE_CLIENT_MAIL;
     const [t] = useTranslation("global");
     const socials: any = t('socials.FollowMe', { returnObjects: true });
     return (
@@ -27,7 +28,7 @@ export default function Footer() {
                         </Tooltip>
                         <Tooltip arrow followCursor={true} placement='top' TransitionComponent={Zoom} title={socials[1]}>
                             <div className='hover:bg-red-600 rounded transition-all duration-300 px-2 py-1'>
-                                <a href="https://www.instagram.com/ahmed_russianguide_cairo_egypt" className='no-underline hover:text-inherit text-inherit' target='_blank'>
+                                <a href={"mailto:" + cleintMail} className='no-underline hover:text-inherit text-inherit' target='_blank'>
                                     <div className="flex items-center gap-2">
                                         <EmailOutlinedIcon className='MyLink' sx={{ fontSize: "2.1rem" }} />
                                         <span>Mail me</span>
@@ -39,7 +40,7 @@ export default function Footer() {
                     <div className="space-y-4 ">
                         <Tooltip arrow followCursor={true} placement='top' TransitionComponent={Zoom} title={socials[2]}>
                             <div className='hover:bg-green-500 rounded transition-all duration-300 px-2 py-1'>
-                                <a href="https://www.instagram.com/ahmed_russianguide_cairo_egypt" className='no-underline hover:text-inherit text-inherit' target='_blank'>
+                                <a href='https://wa.me/201117900555' className='no-underline hover:text-inherit text-inherit' target='_blank'>
                                     <div className="flex items-center gap-2">
                                         <WhatsAppIcon className='MyLink' sx={{ fontSize: "2.1rem" }} />
                                         <span>Whatsapp</span>
@@ -49,7 +50,7 @@ export default function Footer() {
                         </Tooltip>
                         <Tooltip arrow followCursor={true} placement='top' TransitionComponent={Zoom} title={socials[3]}>
                             <div className='hover:bg-blue-500 rounded transition-all duration-300 px-2 py-1'>
-                                <a href="https://www.instagram.com/ahmed_russianguide_cairo_egypt" className='no-underline hover:text-inherit text-inherit' target='_blank'>
+                                <a href='https://t.me/+201012022433' className='no-underline hover:text-inherit text-inherit' target='_blank'>
                                     <div className="flex items-center gap-2">
                                         <TelegramIcon className='MyLink' sx={{ fontSize: "2.1rem" }} />
                                         <span>Telegram</span>
