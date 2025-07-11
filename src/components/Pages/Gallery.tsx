@@ -3,12 +3,10 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle,
   IconButton,
   ImageList,
   ImageListItem,
   ImageListItemBar,
-  ListSubheader,
   Slide,
   useMediaQuery,
   useTheme,
@@ -16,92 +14,87 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import React, { forwardRef, useState } from "react";
 import ImageLoaderSkeleton from "../ImageLoaderSkeleton";
-const Transition = forwardRef(function Transition(props, ref) {
+import { TransitionProps } from "@mui/material/transitions";
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement<any, any>;
+  },
+  ref: React.Ref<unknown>,
+) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
+
 export default function Gallery() {
 
- 
+
 
   const itemData = [
     {
       img: "1.jpg",
-      title: "Coffee",
-      author: "@nolanissac",
+      title: "Pyramids",
       cols: 2,
     },
     {
       img: "2.jpg",
-      title: "Hats",
-      author: "@hjrc33",
+      title: "Pyramids",
       cols: 2,
     },
     {
       img: "3.jpg",
-      title: "Honey",
-      author: "@arwinneil",
+      title: "Pyramids",
       rows: 2,
       cols: 2,
       featured: true,
     },
     {
       img: "4.jpg",
-      title: "Basketball",
-      author: "@tjdragotta",
+      title: "Cairo Museum",
     },
     {
       img: "5.jpg",
-      title: "Fern",
-      author: "@katie_wasserman",
+      title: "Hurghada ",
     },
     {
       img: "6.jpg",
-      title: "Mushrooms",
-      author: "@silverdalex",
+      title: "Pyramids",
       rows: 2,
       cols: 2,
     },
     {
       img: "7.jpg",
-      title: "Tomato basil",
-      author: "@shelleypauls",
+      title: "Pyramids",
     },
     {
       img: "8.jpg",
-      title: "Sea star",
-      author: "@peterlaster",
+      title: "Cairo Museum",
     },
     {
       img: "9.jpg",
-      title: "Bike",
-      author: "@southside_customs",
+      title: "Cairo Museum",
       cols: 2,
     },
     {
       img: "10.jpg",
-      title: "Bike",
-      author: "@southside_customs",
+      title: "Pyramids",
       cols: 2,
     },
     {
       img: "11.jpg",
-      title: "Bike",
-      author: "@southside_customs",
+      title: "Nile",
       cols: 2,
     },
     {
       img: "12.jpg",
-      title: "Bike",
-      author: "@southside_customs",
+      title: "Pyramids",
       cols: 3,
     },
   ];
   const theme = useTheme();
   const [modalOpen, setModalOpen] = useState(false);
-  const [SelectedImage, setSelectedImage] = useState(false);
+  const [SelectedImage, setSelectedImage] = useState<string | boolean>(false);
   const close = () => setModalOpen(false);
   const open = () => setModalOpen(true);
-  const displayImage = (image) => {
+  const displayImage = (image: string | boolean) => {
     setSelectedImage(image);
     modalOpen ? close() : open();
   };
@@ -124,7 +117,7 @@ export default function Gallery() {
     cols = 4;
   }
   return (
-    <div className="container galleryMT">
+    <div className="container">
       <Dialog
         sx={{
           "& .MuiPaper-root": {
@@ -139,17 +132,17 @@ export default function Gallery() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogActions sx={{padding:'0'}}>
-          <Button sx={{padding:'0'}} onClick={handleClose} >
+        <DialogActions sx={{ padding: '0' }}>
+          <Button sx={{ padding: '0' }} onClick={handleClose} >
             <CloseIcon
               sx={{
-                fontSize:'3rem',
+                fontSize: '3rem',
                 color: "white", // Changes cursor to pointer to indicate it's clickable
-                transition:'all 0.6s',
-                borderRadius:'0.3rem',
+                transition: 'all 0.6s',
+                borderRadius: '0.3rem',
                 "&:hover": {
                   color: "black", // Change the color on hover
-                  backgroundColor:'white',
+                  backgroundColor: 'white',
                   transform: "scale(1.1)", // Scale up slightly on hover
                 },
               }}
@@ -157,7 +150,7 @@ export default function Gallery() {
             />
           </Button>
         </DialogActions>
-        <DialogContent sx={{padding:'0'}}>
+        <DialogContent sx={{ padding: '0' }}>
           <div className="bg-transparent d-flex justify-content-center">
             <img
               className="rounded-2 DialogMedia"
@@ -184,7 +177,6 @@ export default function Gallery() {
               />
               <ImageListItemBar
                 title={item.title}
-                subtitle={item.author}
                 actionIcon={
                   <IconButton
                     sx={{ color: "rgba(255, 255, 255, 0.54)" }}

@@ -1,46 +1,32 @@
-
-import { DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next';
+import AboutHero from './AboutHero';
+import Gallery from './Gallery';
 
 export default function About() {
-  const [Dialogue, setDialogue] = useState(false);
-
-  const handleClickDialogue = () => {
-    setDialogue(true);
-  };
-
-  const handleClose = () => {
-    setDialogue(false);
-  };
+  const [t] = useTranslation("global");
+  const items: any = t('about.items', { returnObjects: true });
   return (
-    <div>
-       <Button variant="outlined" onClick={handleClickDialogue}>
-        Dialogue alert dialog
-      </Button>
-      <Dialog
-        open={Dialogue}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            lorem2000
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
-      </Dialog>
+    <div className='w-full relative'>
+      <AboutHero />
+      <div className='max-w-screen-lg mx-auto my-10 px-8 md:p-3'>
+        <div className='sm:grid grid-cols-1 sm:grid-cols-3 gap-7 bg-neutral-800/50 p-10 rounded-md shadow-lg flex flex-col justify-center'>
+          <img className='-scale-x-100 rounded col-span-1 w-full' src="https://res.cloudinary.com/dqijwldax/image/upload/v1752191792/TourGuideVideos/dad1_znkwnw.jpg" alt="profile picture" />
+          <div className='col-span-2 text-start'>
+            <h2>{t('about.welcome')}</h2>
+            <p className='mt-3'>{t('about.describtion')}</p>
+            <div className="grid grid-cols-2 gap-y-2 gap-x-4">
+              {items.map((item: any, index: number) => (
+                <div className='bg-neutral-800 p-3 rounded-lg shadow-lg' key={index}>
+                  <h6>{item.header}</h6>
+                  <p>{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 className='mb-3'>{t('about.Gallery')}</h2>
+      <Gallery />
     </div>
   )
 }

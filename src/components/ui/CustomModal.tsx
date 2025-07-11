@@ -12,7 +12,6 @@ interface CustomDialogProps {
     children?: ReactNode;
     confirmText?: string;
     cancelText?: string;
-    className?: string;
 }
 
 const CustomDialog: React.FC<CustomDialogProps> = ({
@@ -25,17 +24,16 @@ const CustomDialog: React.FC<CustomDialogProps> = ({
     confirmColor = "primary",
     children,
     confirmText = 'Confirm',
-    className,
     cancelText = 'Cancel',
 }) => {
     return (
         <Dialog
             PaperProps={{
-                className: '' + className,
+                className: '!bg-slate-50 dark:!bg-slate-800 !text-slate-800 dark:!text-slate-50',
             }}
             open={open} onClose={onClose} fullWidth maxWidth="sm">
             {title && <DialogTitle>{title}</DialogTitle>}
-            <DialogContent className={className}>{children}</DialogContent>
+            <DialogContent>{children}</DialogContent>
             <DialogActions>
                 <Button onClick={onClose} variant='outlined' color="inherit">
                     {cancelText}

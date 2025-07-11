@@ -1,84 +1,113 @@
 {
     "nav": [
-        "Home",
-        "Tours",
-        "Gallery",
-        "About me",
-        "Contact"
+        "Главная",
+        "Туры",
+        "Галерея",
+        "Обо мне",
+        "Контакты"
     ],
     "tooltips": {
-        "langtooltip": "Change Language"
+        "langtooltip": "Сменить язык"
     },
     "headers": {
-        "first": "Explore Egypt!",
-        "second": "Visit the Pyramids!",
-        "third": "Great Selection of Tours"
+        "first": "Исследуй Египет!",
+        "second": "Посети пирамиды!",
+        "third": "Большой выбор туров",
+        "fourth": "Местные знания",
+        "fifth": "Индивидуальные туры",
+        "sixth": "Незабываемые впечатления"
     },
-    "headerSubText": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum aut provident eaque error soluta est laboriosam rem maiores a eveniet, excepturi",
+    "headerSubText": "Откройте для себя чудеса Египта с надежным местным гидом, который знает все скрытые жемчужины, знаковые достопримечательности и аутентичные впечатления. Хотите ли вы приключений, культурного погружения или отдыха — я организую для вас идеальное путешествие.",
+    "headerSmallSubText": "Давайте начнем ваше приключение.",
     "Tours": {
         "Header": "ПОПУЛЯРНЫЕ ТУРЫ",
-        "subtext": "Нажмите на тур для предпросмотра",
-        "Browse": "Просмотреть все туры"
+        "subtext": "Нажмите на тур для предварительного просмотра",
+        "Browse": "Посмотреть все туры"
     },
     "discover": {
-        "header": "Watch this!",
-        "secondHeader": "WATCH THE VIDEO",
-        "subtext": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis, ut ullam? Itaque cumque dolores voluptate quia, temporibus eaque nobis laudantium totam repellat aliquam facilis nemo!"
+        "header": "Смотрите это!",
+        "secondHeader": "СМОТРЕТЬ ВИДЕО",
+        "subtext": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, ut ullam? Itaque cumque dolores voluptate quia, temporibus eaque nobis laudantium totam repellat aliquam facilis nemo!"
     },
     "socials": {
         "FollowMe": [
-            "Contact me on Instagram",
-            "Email me",
-            "Contact me on Whatsapp",
-            "Contact me on Telegram"
+            "Свяжитесь со мной в Instagram",
+            "Напишите мне по email",
+            "Свяжитесь со мной в WhatsApp",
+            "Свяжитесь со мной в Telegram"
         ]
     },
     "Excursions": [
         {
-            "Title": "Cairo Tour",
-            "Subtitle": "The city of contrasts and the East.",
-            "Duration": "6 Hours",
-            "Transport": "Microbus",
-            "NumberOfIndividuals": "1-4",
-            "Price": "160 euros",
-            "Idea": "I recommend a tour of Cairo. The first excursion will be to the National Egyptian Museum, where we will admire the treasures of the young Pharaoh Tutankhamun and view exhibits from the Old, Middle, and New Kingdoms. Next, we will visit the Museum of Egyptian Civilization to see the royal mummies. Finally, we will explore Old Cairo to experience the enchanting aromas of the East.",
-            "Route": "We will also view artifacts of Cairo and the city center, which features French and European architectural styles. In the museum, we will see exclusive exhibits such as the mask of Tutankhamun. Additionally, we will visit the Museum of Egyptian Civilization to see the royal mummies, including that of Ramses II, who reigned during the peak of Egypt’s military empire. Finally, we will explore Eastern artifacts, the old bazaar, and numerous historic mosques.",
-            "Themes": "During the tour, we will explore the traditions of the Egyptian people, learning about their daily lives, occupations, and activities. We will delve into their customs, cuisine, and dishes, discovering what Egyptians love and enjoy eating.",
+            "Title": "Тур по Каиру",
+            "Subtitle": "Город контрастов и Востока.",
+            "Duration": "6 часов",
+            "Transport": "Микроавтобус",
+            "NumberOfIndividuals": "1–4",
+            "Price": "160 евро",
+            "Idea": "Рекомендую экскурсию по Каиру. Начнем с посещения Египетского национального музея, где мы полюбуемся сокровищами молодого фараона Тутанхамона и экспонатами из Древнего, Среднего и Нового царств. Затем мы отправимся в Музей египетской цивилизации, чтобы увидеть царские мумии. В завершение — прогулка по Старому Каиру с его волшебной восточной атмосферой.",
+            "Route": "Также мы увидим артефакты Каира и центра города с французской и европейской архитектурой. В музее нас ждут уникальные экспонаты, такие как маска Тутанхамона. Мы также посетим Музей египетской цивилизации, где находятся мумии фараонов, включая Рамсеса II — правителя в период расцвета Египетской империи. В завершение — восточные артефакты, старый базар и множество исторических мечетей.",
+            "Themes": "Во время тура мы познакомимся с традициями египтян: узнаем об их повседневной жизни, занятиях и быте. Погрузимся в местные обычаи, кулинарию и блюда, которые любят и с удовольствием едят египтяне.",
             "OrganizationalDetails": [
-                "The tour takes place in a comfortable 2022 car with air conditioning",
-                "We will pick you up from your hotel and bring you back after the excursion",
-                "The program can be changed at your request",
-                "Transfer from/to the airport is possible, please contact me for the cost."
+                "Экскурсия проводится в комфортабельном автомобиле 2022 года с кондиционером",
+                "Мы заберем вас из отеля и вернем обратно после экскурсии",
+                "Программа может быть изменена по вашему желанию",
+                "Возможен трансфер из/в аэропорт — свяжитесь со мной для уточнения стоимости"
             ],
-            "MeetingPoint": "The meeting place is by agreement with the guide; you can discuss it when ordering the excursion.",
+            "MeetingPoint": "Место встречи согласовывается с гидом — обсудим при заказе экскурсии.",
             "Img": "https://ssniper.sirv.com/TourguideProject/luxor.jpg",
-            "AdditionalNotes": "Tickets are excluded from the cost",
+            "AdditionalNotes": "Билеты не включены в стоимость",
             "ImgArr": [
                 ""
             ]
         },
         {
-            "Title": "Pyramids of Giza",
-            "Subtitle": "Treasures of the Egyptian desert!",
-            "Duration": "6 Hours",
-            "Transport": "Microbus",
-            "NumberOfIndividuals": "1-4",
-            "Price": "160 euros",
-            "Idea": "The Egyptian desert is home to a wealth of treasures, including pyramids, tombs, and sarcophagi. Due to the unique preservation conditions, many of these artifacts have survived in remarkable condition. You will explore Memphis, the first capital of Egypt, marvel at the ancient pyramid within the Saqqara complex, and visit the impressive pyramids at the Dahshur necropolis. Our guide will share fascinating insights into the legendary civilization and rich history of Egypt.",
-            "Route": "Saqqara\nOur journey begins at Saqqara, home to the world's first pyramid—the Step Pyramid of Djoser. We will thoroughly explore the site, including its columned halls, the well-preserved ruins of the (T) temple, and the restored monumental gates. A highlight will be the enigmatic underground Serapeum, where you can see 24 massive sarcophagi used for burying sacred bulls. We'll also visit the tomb of Ra-Hotep and the pyramid of Unis, where we will delve into the intriguing funerary texts.\nDahshur\nNext, we move on to Dahshur, another ancient necropolis. Here, you'll be amazed by the Bent Pyramid, the Red Pyramid, and the pyramid of Cheops' mother. Additionally, you'll encounter an unusual clay structure. We will have the opportunity to explore the interiors of all these remarkable buildings.\nThe ancient metropolis of Memphis\nFinally, we will visit Memphis, the first capital of Egypt. You'll learn about the city's founding by Pharaoh Menes and see its notable attractions, including the colossal statues of Ramis.",
+            "Title": "Пирамиды Гизы",
+            "Subtitle": "Сокровища египетской пустыни!",
+            "Duration": "6 часов",
+            "Transport": "Микроавтобус",
+            "NumberOfIndividuals": "1–4",
+            "Price": "160 евро",
+            "Idea": "Египетская пустыня хранит в себе массу сокровищ — пирамиды, гробницы, саркофаги. Благодаря уникальным условиям многие артефакты сохранились в отличном состоянии. Вы посетите Мемфис — первую столицу Египта, восхититесь древней пирамидой в Саккаре и изучите впечатляющие пирамиды в некрополе Дахшур. Гид поделится увлекательными фактами о легендарной цивилизации и богатой истории Египта.",
+            "Route": "Саккара\nНаше путешествие начнется в Саккаре, где находится первая в мире пирамида — ступенчатая пирамида Джосера. Мы подробно исследуем этот памятник: колоннады, хорошо сохранившиеся руины храма и восстановленные монументальные ворота. Особое внимание уделим загадочному подземному Серапеуму с 24 массивными саркофагами для священных быков. Также посетим гробницу Ра-Хотепа и пирамиду Унаса с древними текстами о загробной жизни.\nДахшур\nДалее — Дахшур, еще один древний некрополь. Здесь вы увидите Ломаную пирамиду, Красную пирамиду и пирамиду матери Хеопса. Увидим также необычные постройки из глины. Мы сможем осмотреть интерьеры всех этих сооружений.\nДревний Мемфис\nВ завершение — древний Мемфис, первая столица Египта. Узнаем о его основании фараоном Менесом и увидим известные достопримечательности, включая колоссальные статуи Рамзеса.",
             "Themes": "",
             "OrganizationalDetails": [
-                "The tour takes place in a comfortable 2022 car with air conditioning",
-                "We will pick you up from your hotel and bring you back after the excursion",
-                "The program can be changed at your request",
-                "Transfer from/to the airport is possible, please contact me for the cost."
+                "Экскурсия проводится в комфортабельном автомобиле 2022 года с кондиционером",
+                "Мы заберем вас из отеля и вернем обратно после экскурсии",
+                "Программа может быть изменена по вашему желанию",
+                "Возможен трансфер из/в аэропорт — свяжитесь со мной для уточнения стоимости"
             ],
-            "MeetingPoint": "The meeting place is by agreement with the guide; you can discuss it when ordering the excursion.",
+            "MeetingPoint": "Место встречи согласовывается с гидом — обсудим при заказе экскурсии.",
             "Img": "https://ssniper.sirv.com/TourguideProject/Pyramids.jpg",
-            "AdditionalNotes": "Tickets are excluded from the cost",
+            "AdditionalNotes": "Билеты не включены в стоимость",
             "ImgArr": [
                 ""
             ]
         }
-    ]
+    ],
+    "about": {
+        "subtitle": "Ваш экспертный гид по древним чудесам Египта",
+        "subsubtitle": "25+ лет опыта",
+        "welcome": "Добро пожаловать в мое путешествие",
+        "Gallery": "Галерея",
+        "describtion": "Имея более 25 лет опыта в проведении экскурсий по богатой истории и захватывающим пейзажам Египта, я посвятил свою жизнь тому, чтобы делиться чудесами этой древней цивилизации. Моя страсть к египтологии и глубокое понимание местной культуры делают каждую экскурсию уникальным и познавательным опытом.",
+        "items": [
+            {
+                "header": "25+",
+                "text": "Лет опыта"
+            },
+            {
+                "header": "1000+",
+                "text": "Проведенных туров"
+            },
+            {
+                "header": "50+",
+                "text": "Археологических объектов"
+            },
+            {
+                "header": "Русский",
+                "text": "Язык"
+            }
+        ]
+    }
 }

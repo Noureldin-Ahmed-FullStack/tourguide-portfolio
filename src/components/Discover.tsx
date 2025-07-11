@@ -28,17 +28,9 @@ export default function Discover() {
     });
 
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [pendingRequest, setPendingRequest] = useState(false)
-    const handleOpenDialog = () => {
-        setIsDialogOpen(true)
-    };
     const handleCloseDialog = () => {
         setIsDialogOpen(false)
     };
-    const handleConfirmAction = async () => {
-        console.log("modal testing");
-
-    }
 
     return (
         <div className='w-100  DiscoveryBG'>
@@ -76,24 +68,16 @@ export default function Discover() {
                     alignItems="flex-start"
                 >
                     <Grid className='text-start max-w-sm sm:max-w-none mx-auto'>
-                        <h1>{t('discover.header')}</h1>
-                        <div className='d-flex align-items-center mb-3'>
-                            <i onClick={() => startVideo('Instagram.mp4')} className="fa-regular fa-circle-play watchButton"></i> <h5 className='mb-0 ms-2'>{t('discover.secondHeader')}</h5>
-                        </div>
+
                         <div>
 
 
                             <CustomDialog
                                 open={isDialogOpen}
                                 onClose={handleCloseDialog}
-                                isDisabled={pendingRequest}
-                                isLoading={pendingRequest}
-                                onConfirm={() => handleConfirmAction()}
-                                title="Create a art peice request!"
-                                confirmColor='primary'
                                 confirmText="Confirm"
                                 className="overflow-y-hidden !w-fit"
-                                cancelText="cancel"
+                                cancelText="close"
                             >
                                 <video
                                     autoPlay
@@ -103,39 +87,50 @@ export default function Discover() {
                                     className='max-h-[70vh] z-3 vids rounded-3' controls src={`https://ssniper.sirv.com/TourguideProject/Videos/${SelectedVideo}`}></video>
                             </CustomDialog>
                         </div>
-                        <Grid container alignItems={"center"} justifyContent="space-between">
-                            <Grid className="mt-5 sm:mt-0" size={{ xs: 12, sm: 6, md: 4 }} order={{ xs: 1, sm: 0, md: 0 }}>{t('discover.subtext')}</Grid>
-                            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
-                                <Grid container spacing={2} justifyContent={"center"}>
-                                    <Grid size={{ xs: 12, sm: 7, md: 6 }}>
-                                        <div onClick={() => startVideo('Vid1.mp4')} className='max-w-60 mx-auto overlay-container rounded-4 ScaleOnHover VideoBorder'>
+                        <div className="flex flex-col justify-center sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 sm:gap-4">
+                            <div className="mt-5 sm:mt-0 sm:col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-6 h-full flex flex-col justify-center" >
+                                <div id="container" className='mb-2'>
+                                    <button onClick={() => startVideo('Instagram.mp4')} className="learn-more learnBTN w-72">
+                                        <span className="circle" aria-hidden="true">
+                                            <span className="icon arrow" />
+                                        </span>
+                                        <span className="learnBTN-text">{t('discover.secondHeader')}</span>
+                                    </button>
+                                </div>
+                                {t('discover.subtext')}</div>
+                            <div className='sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2'>
+                                <div className='w-full'>
+                                    <div className='w-full my-4'>
+                                        <div onClick={() => startVideo('Vid1.mp4')} className='w-4/5 sm:w-full mx-auto overlay-container rounded-4 ScaleOnHover VideoBorder'>
                                             <img src="https://ssniper.sirv.com/TourguideProject/Gallery/thumbnail1.jpg" style={{ aspectRatio: "4/3" }} className=' w-100 ' alt="" />
                                             <div className="overlay">
                                                 <i className="fa-regular fa-circle-play watchButton"></i>
+                                                <h5>watch video</h5>
                                             </div>
                                         </div>
-                                    </Grid>
-                                    <Grid className="" size={{ xs: 12, sm: 7, md: 6 }}>
-                                        <div onClick={() => startVideo('Vid2.mp4')} className='max-w-60 mx-auto overlay-container rounded-4 ScaleOnHover VideoBorder'>
+                                    </div>
+                                    <div className='w-full my-4'>
+                                        <div onClick={() => startVideo('Vid2.mp4')} className='w-4/5 sm:w-full mx-auto overlay-container rounded-4 ScaleOnHover VideoBorder'>
                                             <img src="https://ssniper.sirv.com/TourguideProject/Gallery/thumbnail2.jpg" style={{ aspectRatio: "4/3" }} className=' w-100 ' alt="" />
                                             <div className="overlay">
                                                 <i className="fa-regular fa-circle-play watchButton"></i>
+                                                <h5>watch video</h5>
                                             </div>
                                         </div>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </Grid>
-                    {/* <ThemeProvider theme={theme}>
+
+                </Grid>
+                {/* <ThemeProvider theme={theme}>
                         <Socials />
 
 
                     </ThemeProvider> */}
-                </Grid>
-
             </div>
+
         </div>
     )
 }

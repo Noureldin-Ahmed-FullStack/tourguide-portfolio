@@ -1,49 +1,46 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import '../css/mainBG.css'
 import { TypeAnimation } from 'react-type-animation'
-import { Grid, Skeleton, Tab, Tabs, ThemeProvider, createTheme } from '@mui/material'
+import { Grid, Skeleton, ThemeProvider, createTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next';
 
 export default function BigBG() {
   const [loaded, setLoaded] = useState(false);
-  const [t, i18n] = useTranslation("global");
-  const changeLanguage = (lang)=>{
-    i18n.changeLanguage(lang)
-  }
+  const [t] = useTranslation("global");
   const handleImageLoad = () => {
     console.log('Image loaded');
     setLoaded(true);
-};
+  };
   const theme = createTheme({
-      palette: {
-          mode: 'dark'
-      },
+    palette: {
+      mode: 'dark'
+    },
   });
   return (
     <div className='w-100 mainBG'>
       {!loaded && (
-                <ThemeProvider theme={theme}>
-                    <Skeleton
-                        animation="wave"
-                        variant="rectangular"
-                        width="100%"
-                        height="100%"
-                        sx={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            zIndex: 5
-                        }}
-                    />
-                </ThemeProvider>
-            )}
-            <img
-                className={loaded? 'bgImage' : 'd-none'}
-                src={'https://ssniper.sirv.com/TourguideProject/bg2.jpg'}
-                onLoad={handleImageLoad}
-                onError={() => console.error('Image failed to load')}
-                
-            />
+        <ThemeProvider theme={theme}>
+          <Skeleton
+            animation="wave"
+            variant="rectangular"
+            width="100%"
+            height="100%"
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              zIndex: 5
+            }}
+          />
+        </ThemeProvider>
+      )}
+      <img
+        className={loaded ? 'bgImage' : 'd-none'}
+        src={'https://ssniper.sirv.com/TourguideProject/bg2.jpg'}
+        onLoad={handleImageLoad}
+        onError={() => console.error('Image failed to load')}
+
+      />
       {/* <img src="https://ssniper.sirv.com/TourguideProject/bg2.jpg" className='bgImage' alt="" /> */}
       <Grid
         container
@@ -57,12 +54,17 @@ export default function BigBG() {
           <TypeAnimation
             className=' typer'
             sequence={[
-              // Same substring at the start will only be typed out once, initially
               t("headers.first"),
-              2000, // wait 1s before replacing "Mice" with "Hamsters"
+              2000,
               t("headers.second"),
               1000,
               t("headers.third"),
+              1000,
+              t("headers.fourth"),
+              1000,
+              t("headers.fifth"),
+              1000,
+              t("headers.sixth"),
               1000,
             ]}
             wrapper="h1"
@@ -71,14 +73,16 @@ export default function BigBG() {
             repeat={Infinity}
           />
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6} md={6}>
-              <h4 className='text-start typerSubtext'>{t("headerSubText")}</h4>
+            <Grid className='text-start typerSubtext' item xs={12} sm={6} md={6}>
+              <h4>{t("headerSubText")}</h4>
+              <h5>{t("headerSmallSubText")}</h5>
             </Grid>
           </Grid>
         </Grid>
+
         <ThemeProvider theme={theme}>
-        <Grid item
-        className='position-absolute bottom-0 mb-3 w-100 justify-content-center d-flex'>
+          <Grid item
+            className='position-absolute bottom-0 mb-3 w-100 justify-content-center d-flex'>
             {/* <Tabs
               value={"1"}
               indicatorColor="secondary"
@@ -99,7 +103,7 @@ export default function BigBG() {
               <Tab label="Item Three" value="3" />
             </Tabs> */}
 
-        </Grid>
+          </Grid>
         </ThemeProvider>
       </Grid>
     </div>

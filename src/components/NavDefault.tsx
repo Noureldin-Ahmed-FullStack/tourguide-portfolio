@@ -10,7 +10,7 @@ import FlightIcon from '@mui/icons-material/Flight';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import LanguageIcon from '@mui/icons-material/Language';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Badge, Tab, Tabs, ThemeProvider, Zoom, createTheme } from '@mui/material';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -21,19 +21,20 @@ export default function NavDefault() {
     const changeLanguage = () => {
         console.log(i18n.language);
         i18n.language == 'en' ? i18n.changeLanguage('ru') : i18n.changeLanguage('en')
+        localStorage.setItem("language",i18n.language)
         setCurrentLang(i18n.language)
         // i18n.changeLanguage(lang)
     }
+    useEffect(() => {
+        console.log("repeated lang change");
+        const localLang = localStorage.getItem("language")
+        i18n.changeLanguage(localLang || 'en')
+        setCurrentLang(i18n.language)
+    }, [CurrentLang])
+    
     const pages = [
         { text: navText[0], path: '' }, { text: navText[1], path: 'Tours' }, { text: navText[2], path: 'Gallery' }, { text: navText[3], path: 'About' }];
     const [anchorElNav, setAnchorElNav] = useState<HTMLElement | null>(null);
-    // const [anchorElUser, setAnchorElUser] = useState(null);
-    // const handleOpenUserMenu = (event) => {
-    //     setAnchorElUser(event.currentTarget);
-    // };
-    // const handleCloseUserMenu = () => {
-    //     setAnchorElUser(null);
-    // };
     let navigate = useNavigate()
 
     const location = useLocation();

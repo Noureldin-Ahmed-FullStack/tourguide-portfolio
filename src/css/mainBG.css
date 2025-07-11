@@ -23,7 +23,16 @@
     background: linear-gradient(to top, #161815, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25), #16181594);
     z-index: 1;
 }
-
+.aboutBG::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100% !important;
+    background: linear-gradient(to top, #161815, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15), #16181594);
+    z-index: 1;
+}
 .typer{
     text-align: start;
     width: 100%;

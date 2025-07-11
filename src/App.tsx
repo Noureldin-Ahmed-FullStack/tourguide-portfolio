@@ -11,6 +11,7 @@ import { loadFull } from "tsparticles";
 import NavDefault from './components/NavDefault';
 import About from './components/Pages/About';
 import ToursAll from './components/Pages/ToursAll';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -74,7 +75,7 @@ function App() {
           value: { min: 1, max: 5 }
         }
       }
-}),[])
+    }), [])
   useEffect(() => {
     if (init) {
       return;
@@ -86,13 +87,13 @@ function App() {
       setInit(true);
     });
   }, []);
-  
+
   return (
     <div className="main-container text-zinc-100">
       <Particles
         id="tsparticles"
         options={options as any}
-        />
+      />
       <div className='z-0'>
         <Router>
           <NavDefault />
@@ -100,11 +101,12 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/tourguide-portfolio" element={<Main />} />
             <Route path="/Tours" element={<ToursAll />} />
-            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/gallery" element={<div className='mt-28'><Gallery /></div>} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<h1>lol wrong route</h1>} />
           </Routes>
+          <Footer />
         </Router>
 
       </div>

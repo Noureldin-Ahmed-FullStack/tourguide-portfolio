@@ -12,9 +12,13 @@
     "headers": {
         "first": "Explore Egypt!",
         "second": "Visit the Pyramids!",
-        "third": "Great Selection of Tours"
+        "third": "Great Selection of Tours",
+        "fourth": "Local Insights",
+        "fifth": "Personalized Tours",
+        "sixth": "Unforgettable Memories"
     },
-    "headerSubText": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum aut provident eaque error soluta est laboriosam rem maiores a eveniet, excepturi",
+    "headerSubText": "Explore the wonders of Egypt with a trusted local guide who knows every hidden gem, iconic landmark, and authentic experience. Whether you’re seeking adventure, culture, or relaxation — I’ll craft the perfect journey just for you.",
+    "headerSmallSubText": "Let’s start your adventure.",
     "Tours": {
         "Header": "POPULAR TOURS",
         "subtext": "Click the Tour for preview",
@@ -28,7 +32,7 @@
     "socials": {
         "FollowMe": [
             "Contact me on Instagram",
-            "Contact me on Facebook",
+            "Email me",
             "Contact me on Whatsapp",
             "Contact me on Telegram"
         ]
@@ -80,5 +84,25 @@
                 ""
             ]
         }
-    ]
+    ],
+    "about":{
+        "subtitle":"Your Expert Guide Through Egypt's Ancient Wonders",
+        "subsubtitle":"25+ years of Experience",
+        "welcome":"Welcome to my journey",
+        "Gallery":"Gallery",
+        "describtion":"With over 25 years of experience guiding visitors through Egypt's rich history and stunning landscapes, I've dedicated my life to sharing the wonders of this ancient civilization. My passion for Egyptology and my deep understanding of local culture make every tour a unique and enriching experience.",
+        "items":[{
+            "header":"25+",
+            "text":"Years Of Experience"
+        },{
+            "header":"1000+",
+            "text":"Tours Conducted"
+        },{
+            "header":"50+",
+            "text":"Archaeological Sites"
+        },{
+            "header":"Russian",
+            "text":"Speaker"
+        }]
+    }
 }
