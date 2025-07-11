@@ -1,7 +1,7 @@
 import MyCarousel from './MyCarousel';
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+// import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+// import { Link } from 'react-router-dom';
 import '../css/Tours.css'
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export default function Tours() {
@@ -15,7 +15,7 @@ export default function Tours() {
             <div>
                 <MyCarousel />
             </div>
-            <Link to='/Tours' className='browseLink'>{t('Tours.Browse')} <KeyboardDoubleArrowRightIcon /></Link>
+            {/* <Link to='/Tours' className='browseLink'>{t('Tours.Browse')} <KeyboardDoubleArrowRightIcon /></Link> */}
         </div>
     )
 }

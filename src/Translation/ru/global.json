@@ -55,11 +55,10 @@
                 "Возможен трансфер из/в аэропорт — свяжитесь со мной для уточнения стоимости"
             ],
             "MeetingPoint": "Место встречи согласовывается с гидом — обсудим при заказе экскурсии.",
-            "Img": "https://ssniper.sirv.com/TourguideProject/luxor.jpg",
+            "Img": "https://ssniper.sirv.com/TourguideProject/Cairo.jpg",
             "AdditionalNotes": "Билеты не включены в стоимость",
-            "ImgArr": [
-                ""
-            ]
+            "ImagesAddress": "https://ssniper.sirv.com/TourguideProject/Excursion1/",
+            "ImagesCount": 11
         },
         {
             "Title": "Пирамиды Гизы",
@@ -80,9 +79,8 @@
             "MeetingPoint": "Место встречи согласовывается с гидом — обсудим при заказе экскурсии.",
             "Img": "https://ssniper.sirv.com/TourguideProject/Pyramids.jpg",
             "AdditionalNotes": "Билеты не включены в стоимость",
-            "ImgArr": [
-                ""
-            ]
+            "ImagesAddress": "https://ssniper.sirv.com/TourguideProject/Excursion2/",
+            "ImagesCount": 6
         }
     ],
     "about": {

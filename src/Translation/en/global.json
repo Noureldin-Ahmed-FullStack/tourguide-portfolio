@@ -41,10 +41,10 @@
         {
             "Title": "Cairo Tour",
             "Subtitle": "The city of contrasts and the East.",
-            "Duration":"6 Hours",
-            "Transport":"Microbus",
-            "NumberOfIndividuals":"1-4",
-            "Price":"160 euros",
+            "Duration": "6 Hours",
+            "Transport": "Microbus",
+            "NumberOfIndividuals": "1-4",
+            "Price": "160 euros",
             "Idea": "I recommend a tour of Cairo. The first excursion will be to the National Egyptian Museum, where we will admire the treasures of the young Pharaoh Tutankhamun and view exhibits from the Old, Middle, and New Kingdoms. Next, we will visit the Museum of Egyptian Civilization to see the royal mummies. Finally, we will explore Old Cairo to experience the enchanting aromas of the East.",
             "Route": "We will also view artifacts of Cairo and the city center, which features French and European architectural styles. In the museum, we will see exclusive exhibits such as the mask of Tutankhamun. Additionally, we will visit the Museum of Egyptian Civilization to see the royal mummies, including that of Ramses II, who reigned during the peak of Egypt’s military empire. Finally, we will explore Eastern artifacts, the old bazaar, and numerous historic mosques.",
             "Themes": "During the tour, we will explore the traditions of the Egyptian people, learning about their daily lives, occupations, and activities. We will delve into their customs, cuisine, and dishes, discovering what Egyptians love and enjoy eating.",
@@ -55,19 +55,18 @@
                 "Transfer from/to the airport is possible, please contact me for the cost."
             ],
             "MeetingPoint": "The meeting place is by agreement with the guide; you can discuss it when ordering the excursion.",
-            "Img": "https://ssniper.sirv.com/TourguideProject/luxor.jpg",
-            "AdditionalNotes":"Tickets are excluded from the cost",
-            "ImgArr": [
-                ""
-            ]
+            "Img": "https://ssniper.sirv.com/TourguideProject/Cairo.jpg",
+            "AdditionalNotes": "Tickets are excluded from the cost",
+            "ImagesAddress": "https://ssniper.sirv.com/TourguideProject/Excursion1/",
+            "ImagesCount": 11
         },
         {
             "Title": "Pyramids of Giza",
             "Subtitle": "Treasures of the Egyptian desert!",
-            "Duration":"6 Hours",
-            "Transport":"Microbus",
-            "NumberOfIndividuals":"1-4",
-            "Price":"160 euros",
+            "Duration": "6 Hours",
+            "Transport": "Microbus",
+            "NumberOfIndividuals": "1-4",
+            "Price": "160 euros",
             "Idea": "The Egyptian desert is home to a wealth of treasures, including pyramids, tombs, and sarcophagi. Due to the unique preservation conditions, many of these artifacts have survived in remarkable condition. You will explore Memphis, the first capital of Egypt, marvel at the ancient pyramid within the Saqqara complex, and visit the impressive pyramids at the Dahshur necropolis. Our guide will share fascinating insights into the legendary civilization and rich history of Egypt.",
             "Route": "Saqqara\nOur journey begins at Saqqara, home to the world's first pyramid—the Step Pyramid of Djoser. We will thoroughly explore the site, including its columned halls, the well-preserved ruins of the (T) temple, and the restored monumental gates. A highlight will be the enigmatic underground Serapeum, where you can see 24 massive sarcophagi used for burying sacred bulls. We'll also visit the tomb of Ra-Hotep and the pyramid of Unis, where we will delve into the intriguing funerary texts.\nDahshur\nNext, we move on to Dahshur, another ancient necropolis. Here, you'll be amazed by the Bent Pyramid, the Red Pyramid, and the pyramid of Cheops' mother. Additionally, you'll encounter an unusual clay structure. We will have the opportunity to explore the interiors of all these remarkable buildings.\nThe ancient metropolis of Memphis\nFinally, we will visit Memphis, the first capital of Egypt. You'll learn about the city's founding by Pharaoh Menes and see its notable attractions, including the colossal statues of Ramis.",
             "Themes": "",
@@ -79,30 +78,34 @@
             ],
             "MeetingPoint": "The meeting place is by agreement with the guide; you can discuss it when ordering the excursion.",
             "Img": "https://ssniper.sirv.com/TourguideProject/Pyramids.jpg",
-            "AdditionalNotes":"Tickets are excluded from the cost",
-            "ImgArr": [
-                ""
-            ]
+            "AdditionalNotes": "Tickets are excluded from the cost",
+            "ImagesAddress": "https://ssniper.sirv.com/TourguideProject/Excursion2/",
+            "ImagesCount": 6
         }
     ],
-    "about":{
-        "subtitle":"Your Expert Guide Through Egypt's Ancient Wonders",
-        "subsubtitle":"25+ years of Experience",
-        "welcome":"Welcome to my journey",
-        "Gallery":"Gallery",
-        "describtion":"With over 25 years of experience guiding visitors through Egypt's rich history and stunning landscapes, I've dedicated my life to sharing the wonders of this ancient civilization. My passion for Egyptology and my deep understanding of local culture make every tour a unique and enriching experience.",
-        "items":[{
-            "header":"25+",
-            "text":"Years Of Experience"
-        },{
-            "header":"1000+",
-            "text":"Tours Conducted"
-        },{
-            "header":"50+",
-            "text":"Archaeological Sites"
-        },{
-            "header":"Russian",
-            "text":"Speaker"
-        }]
+    "about": {
+        "subtitle": "Your Expert Guide Through Egypt's Ancient Wonders",
+        "subsubtitle": "25+ years of Experience",
+        "welcome": "Welcome to my journey",
+        "Gallery": "Gallery",
+        "describtion": "With over 25 years of experience guiding visitors through Egypt's rich history and stunning landscapes, I've dedicated my life to sharing the wonders of this ancient civilization. My passion for Egyptology and my deep understanding of local culture make every tour a unique and enriching experience.",
+        "items": [
+            {
+                "header": "25+",
+                "text": "Years Of Experience"
+            },
+            {
+                "header": "1000+",
+                "text": "Tours Conducted"
+            },
+            {
+                "header": "50+",
+                "text": "Archaeological Sites"
+            },
+            {
+                "header": "Russian",
+                "text": "Speaker"
+            }
+        ]
     }
 }

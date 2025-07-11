@@ -21,7 +21,7 @@ export default function NavDefault() {
     const changeLanguage = () => {
         console.log(i18n.language);
         i18n.language == 'en' ? i18n.changeLanguage('ru') : i18n.changeLanguage('en')
-        localStorage.setItem("language",i18n.language)
+        localStorage.setItem("language", i18n.language)
         setCurrentLang(i18n.language)
         // i18n.changeLanguage(lang)
     }
@@ -31,9 +31,11 @@ export default function NavDefault() {
         i18n.changeLanguage(localLang || 'en')
         setCurrentLang(i18n.language)
     }, [CurrentLang])
-    
+
     const pages = [
-        { text: navText[0], path: '' }, { text: navText[1], path: 'Tours' }, { text: navText[2], path: 'Gallery' }, { text: navText[3], path: 'About' }];
+        { text: navText[0], path: '' },
+        // { text: navText[1], path: 'Tours' },
+        { text: navText[2], path: 'Gallery' }, { text: navText[3], path: 'About' }];
     const [anchorElNav, setAnchorElNav] = useState<HTMLElement | null>(null);
     let navigate = useNavigate()
 
@@ -42,8 +44,8 @@ export default function NavDefault() {
         switch (pathname) {
             case './':
                 return 1;
-            case '/tours':
-                return 2;
+            // case '/tours':
+            //     return 2;
             case '/gallery':
                 return 3;
             case '/about':
@@ -169,7 +171,7 @@ export default function NavDefault() {
                                 allowScrollButtonsMobile
                                 aria-label="lab API tabs example">
                                 <Tab onClick={() => GoToPage('./')} label={navText[0]} value={1} />
-                                <Tab onClick={() => GoToPage('./tours')} label={navText[1]} value={2} />
+                                {/* <Tab onClick={() => GoToPage('./tours')} label={navText[1]} value={2} /> */}
                                 <Tab onClick={() => GoToPage('./gallery')} label={navText[2]} value={3} />
                                 <Tab onClick={() => GoToPage('./about')} label={navText[3]} value={4} />
                                 {/* <Tab onClick={() => GoToPage('./contact')} label={navText[4]} value={5} /> */}

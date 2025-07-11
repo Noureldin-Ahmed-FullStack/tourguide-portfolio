@@ -95,44 +95,24 @@ export default function carousel() {
                 removeArrowOnDeviceType={["tablet", "mobile"]}
                 // deviceType={this.props.deviceType}
                 dotListClass="custom-dot-list-style"
-                itemClass="carousel-item-padding-40-px"
+                itemClass="flex items-center"
               >
-                <img
-                  className="w-100"
-                  src="https://ssniper.sirv.com/TourguideProject/Pyramids1.jpg"
-                  draggable={false}
-                  alt=""
-                />
-                <img
-                  className="w-100"
-                  src="https://ssniper.sirv.com/TourguideProject/luxor.jpg"
-                  draggable={false}
-                  alt=""
-                />
-                <img
-                  className="w-100"
-                  src="https://ssniper.sirv.com/TourguideProject/mosqueBig.jpg"
-                  draggable={false}
-                  alt=""
-                />
-                <img
-                  className="w-100"
-                  src="https://ssniper.sirv.com/TourguideProject/Pyramids1.jpg"
-                  draggable={false}
-                  alt=""
-                />
-                <img
-                  className="w-100"
-                  src="https://ssniper.sirv.com/TourguideProject/Pyramids1.jpg"
-                  draggable={false}
-                  alt=""
-                />
-                <img
-                  className="w-100"
-                  src="https://ssniper.sirv.com/TourguideProject/Hall.jpg"
-                  draggable={false}
-                  alt=""
-                />
+                {
+                  (() => {
+                    const images = [];
+                    for (let i = 1; i <= SelectedTour?.ImagesCount; i++) {
+                      images.push(
+                        <img
+                          key={i}
+                          className="max-h-[50vh] mx-auto"
+                          src={`${SelectedTour?.ImagesAddress}${i}.jpg`}
+                          draggable={false}
+                        />
+                      );
+                    }
+                    return images;
+                  })()
+                }
               </Carousel>
               {SelectedTour?.Idea && (
                 <>
@@ -191,11 +171,6 @@ export default function carousel() {
                   position="bottom"
                   title={item.Title}
                   subtitle={item.Subtitle}
-                  actionIcon={
-                    <IconButton sx={{ color: "white" }}>
-                      <ThumbUpRoundedIcon />
-                    </IconButton>
-                  }
                   actionPosition="left"
                 />
               </ImageListItem>
