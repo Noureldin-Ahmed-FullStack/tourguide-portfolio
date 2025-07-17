@@ -44,7 +44,7 @@ export default function BigBG() {
       {/* <img src="https://ssniper.sirv.com/TourguideProject/bg2.jpg" className='bgImage' alt="" /> */}
       <Grid
         container
-        className='w-100 h-100 z-2 container position-relative '
+        className='w-100 h-100 z-2 container position-relative px-4'
         direction="column"
         justifyContent="space-evenly"
         alignItems="flex-start"

@@ -40,7 +40,7 @@ export default function AboutHero() {
 
       />
       <div
-        className='w-100 h-100 z-2 flex flex-col items-center justify-center position-relative text-start w-full'
+        className='w-100 h-100 z-2 flex flex-col items-center justify-center position-relative text-start w-full px-3'
       >
         <div>
           <h1 className='text-6xl'>Ahmed Abdul Alim</h1>

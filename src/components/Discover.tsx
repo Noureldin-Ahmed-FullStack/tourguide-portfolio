@@ -33,7 +33,7 @@ export default function Discover() {
     };
 
     return (
-        <div className='w-100  DiscoveryBG'>
+        <div className='w-100 mb-10 DiscoveryBG'>
             {!loaded && (
                 <ThemeProvider theme={theme}>
                     <Skeleton
@@ -67,7 +67,7 @@ export default function Discover() {
                     justifyContent="space-evenly"
                     alignItems="flex-start"
                 >
-                    <Grid className='text-start max-w-sm sm:max-w-none mx-auto'>
+                    <Grid className='text-start max-w-5xl mx-auto'>
 
                         <div>
 
@@ -76,7 +76,7 @@ export default function Discover() {
                                 open={isDialogOpen}
                                 onClose={handleCloseDialog}
                                 confirmText="Confirm"
-                                className="overflow-y-hidden !w-fit"
+                                className="overflow-y-hidden !w-fit mx-0"
                                 cancelText="close"
                             >
                                 <video
@@ -87,7 +87,7 @@ export default function Discover() {
                                     className='max-h-[70vh] z-3 vids rounded-3' controls src={`https://ssniper.sirv.com/TourguideProject/Videos/${SelectedVideo}`}></video>
                             </CustomDialog>
                         </div>
-                        <div className="flex flex-col justify-center sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 sm:gap-4">
+                        <div className="flex flex-col justify-center sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 sm:gap-4 px-2">
                             <div className="mt-5 sm:mt-0 sm:col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-6 h-full flex flex-col justify-center" >
                                 <div id="container" className='mb-2'>
                                     <button onClick={() => startVideo('Instagram.mp4')} className="learn-more learnBTN w-72">
@@ -98,7 +98,7 @@ export default function Discover() {
                                     </button>
                                 </div>
                                 {t('discover.subtext')}</div>
-                            <div className='sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2'>
+                            <div className='sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2 max-w-72 mx-auto lg:max-w-64'>
                                 <div className='w-full'>
                                     <div className='w-full my-4'>
                                         <div onClick={() => startVideo('Vid1.mp4')} className='w-4/5 sm:w-full mx-auto overlay-container rounded-4 ScaleOnHover VideoBorder'>

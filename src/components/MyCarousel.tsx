@@ -142,12 +142,15 @@ export default function carousel() {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+            PaperProps={{
+                className: 'mx-0'
+            }}
       >
-        <DialogTitle className="pb-0" id="alert-dialog-title">{SelectedTour?.Title}</DialogTitle>
-        <span className="px-4">{SelectedTour?.Subtitle}</span>
+        <DialogTitle className="pb-0  px-3" id="alert-dialog-title">{SelectedTour?.Title}</DialogTitle>
+        <span className="px-3">{SelectedTour?.Subtitle}</span>
         <DialogContent sx={{ paddingTop: '0.2rem' }}>
           <div className="!text-zinc-200 w-100 TourModal">
-            <div className="p-3">
+            <div className="p-0 ">
               <Carousel
                 className="myMultiCarousel grab"
                 swipeable={true}

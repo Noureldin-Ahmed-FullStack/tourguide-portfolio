@@ -178,7 +178,7 @@ export default function NavDefault() {
                             </Tabs>
                         </Box>
 
-                        <Box sx={{ flexGrow: 0 }}>
+                        <Box className="me-2" sx={{ flexGrow: 0 }}>
                             <Tooltip TransitionComponent={Zoom} title={t('tooltips.langtooltip')}>
                                 <Badge badgeContent={CurrentLang} color='primary'>
                                     <LanguageIcon onClick={changeLanguage} className='languageIco' sx={{
