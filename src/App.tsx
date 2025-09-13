@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Main from './components/Main';
 import Gallery from './components/Pages/Gallery';
 import Contact from './components/Pages/Contact';

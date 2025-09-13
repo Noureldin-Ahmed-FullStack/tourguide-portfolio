@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ahmed-aslia.vercel.app/sitemap.xml
