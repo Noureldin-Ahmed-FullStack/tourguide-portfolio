@@ -11,6 +11,14 @@ export default defineConfig(
       react(),
       VitePWA({
         registerType: 'autoUpdate',
+        workbox: {
+          globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+          // 👇 Do NOT serve index.html for these URLs
+          navigateFallbackDenylist: [
+            /sitemap\.xml$/,
+            /robots\.txt$/
+          ],
+        },
         includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
         manifest: {
           name: 'Ahmed Asila Tour Guide',
