@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Premium Tour Guide Portfolio Theme */
 :root {
   /* Premium color palette - warm gold and deep charcoal */
   --color-primary: #C9A962;
