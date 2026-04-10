@@ -1,60 +1,71 @@
 .BottomBG {
-    /* background-image: url('./Images/boat.jpg'); */
     position: absolute;
     z-index: -2;
-    /* filter: brightness(75%); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     height: 100vh;
     display: flex;
-    /* position: relative;
-    place-items: center; */
 }
 
-.watchButton{
+.watchButton {
     font-size: 3rem;
-    transition: all 0.3s;
-}
-.watchButton:hover{
-    color: #e51f1f;
-    cursor: pointer;
-    scale: 1.1;
+    transition: all 0.3s ease;
+    color: #C9A962;
 }
 
+.watchButton:hover {
+    color: #E5D4A1;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+/* Premium overlay container */
 .overlay-container {
     position: relative;
-    background-color: #333;
+    background-color: #1A1A1A;
     overflow: hidden;
+    border-radius: 0.5rem;
 }
 
 .overlay {
     position: absolute;
-    bottom: -100%;  /* Start off-screen (bottom) */
+    bottom: -100%;
     left: 0;
     right: 0;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);  /* Semi-transparent black */
+    background: linear-gradient(
+        to top,
+        rgba(10, 10, 10, 0.9) 0%,
+        rgba(10, 10, 10, 0.4) 50%,
+        transparent 100%
+    );
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: bottom 0.5s ease-in-out;  /* Smooth transition */
+    transition: bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .overlay-container:hover .overlay {
-    bottom: 0;  /* Move to the visible position */
+    bottom: 0;
 }
+
 .BottomBG::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100% !important;
-    /* background: rgba(0, 0, 0, 0.25); */
-    background: linear-gradient(to top, #161815, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25), #161815);
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        #0A0A0A 0%,
+        rgba(10, 10, 10, 0.3) 30%,
+        rgba(10, 10, 10, 0.3) 70%,
+        #0A0A0A 100%
+    );
     z-index: 1;
 }
 
@@ -63,31 +74,37 @@
     width: 100%;
 }
 
-.typerSubtext {
-    /* background-color: red; */
+.vids {
+    z-index: 5 !important;
 }
 
-.vids{
-z-index: 5 !important;
-}
+/* Premium video border */
 .VideoBorder {
-    border: rgba(255, 255, 255, 0.473) 2px solid;
-    filter: brightness(85%);
+    border: 2px solid rgba(201, 169, 98, 0.3);
+    filter: brightness(90%);
+    transition: all 0.4s ease;
+}
+
+.VideoBorder:hover {
+    border-color: rgba(201, 169, 98, 0.6);
+    filter: brightness(100%);
+    box-shadow: 0 10px 40px rgba(201, 169, 98, 0.2);
 }
 
 .object-cover {
     object-fit: cover;
 }
 
+/* Premium discovery section */
 .DiscoveryBG {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     z-index: 2;
 }
 
 .bgImage {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -95,19 +112,64 @@ z-index: 5 !important;
     object-fit: cover;
     object-position: center;
 }
+
 .DiscoveryBG::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100% !important;
-    background: linear-gradient(to top, #161815, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25), #161815);
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        #0A0A0A 0%,
+        rgba(10, 10, 10, 0.4) 20%,
+        rgba(10, 10, 10, 0.4) 80%,
+        #0A0A0A 100%
+    );
     z-index: 1;
 }
-.over{
+
+.over {
     position: absolute;
     top: 0;
     left: 0;
+}
 
+/* Premium hover scale */
+.scaleOnHover {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.4s ease;
+    border: 1px solid rgba(201, 169, 98, 0.1);
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.scaleOnHover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(201, 169, 98, 0.15);
+    border-color: rgba(201, 169, 98, 0.3);
+}
+
+/* Golden accent animations */
+@keyframes goldenShimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.golden-shimmer {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(201, 169, 98, 0.2) 50%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: goldenShimmer 3s ease-in-out infinite;
 }

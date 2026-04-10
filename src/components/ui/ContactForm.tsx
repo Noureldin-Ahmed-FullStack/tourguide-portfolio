@@ -1,75 +1,142 @@
-import { TextField } from '@mui/material'
 import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { motion } from 'framer-motion';
+import GoldenButton from './GoldenButton';
+import SendIcon from '@mui/icons-material/Send';
 
 export default function ContactForm() {
-    const [pending, setPending] = useState(false)
+    const [pending, setPending] = useState(false);
+    const [formData, setFormData] = useState({
+        userEmail: '',
+        userPhone: '',
+        userMessage: ''
+    });
     const ClientMail = import.meta.env.VITE_CLIENT_MAIL;
     const MyMail = import.meta.env.VITE_MY_MAIL;
     const BaseURL = import.meta.env.VITE_BASE_URL;
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setPending(true)
-        const form = e.currentTarget;
-        const formData = {
-            userEmail: (form.elements.namedItem('userEmail') as HTMLInputElement).value,
-            userPhone: (form.elements.namedItem('userPhone') as HTMLInputElement).value,
-            userMessage: (form.elements.namedItem('userMessage') as HTMLTextAreaElement).value,
+        setPending(true);
+
+        const data = {
+            userEmail: formData.userEmail,
+            userPhone: formData.userPhone,
+            userMessage: formData.userMessage,
             excursion: null,
             reciver: [ClientMail, MyMail]
         };
-        form.reset();
 
         try {
-            const response = await axios.post(BaseURL + '/contactMe', formData);
+            const response = await axios.post(BaseURL + '/contactMe', data);
             console.log('Success:', response);
-            setPending(false)
-            toast.success("message sent!", {
+            setPending(false);
+            setFormData({ userEmail: '', userPhone: '', userMessage: '' });
+            toast.success("Message sent successfully!", {
                 position: "top-center",
                 autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
+                theme: "dark",
             });
         } catch (error) {
-            setPending(false)
-            toast.error("an error has occured", {
+            setPending(false);
+            toast.error("An error has occurred", {
                 position: "top-center",
                 autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
+                theme: "dark",
             });
             console.error('Error:', error);
         }
     };
+
+    const inputClasses = `
+        w-full px-4 py-3 rounded-lg
+        bg-background/50 border border-primary/20
+        text-white placeholder-white/40
+        focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30
+        transition-all duration-300
+        hover:border-primary/40
+    `;
+
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="md:pl-16 border-t border-l-0 md:border-t-0 md:border-l border-gray-300/30 pt-6 md:pt-0 text-center md:text-left">
-                <div className=''>
-                    <div className="grid grid-cols-2 gap-2 mb-2">
-                        <TextField required id="userEmail" label="Your email" type='email' variant="outlined" />
-                        <TextField required id="userPhone" label="Your Whatsapp number" type='tel' variant="outlined" />
-                    </div>
-                    <TextField
-                        fullWidth
-                        id="userMessage"
-                        label="Message"
-                        multiline
-                        rows={4}
-                    // defaultValue="Default Value"
+        <motion.form
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-4"
+        >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label htmlFor="userEmail" className="sr-only">Email</label>
+                    <input
+                        type="email"
+                        id="userEmail"
+                        name="userEmail"
+                        value={formData.userEmail}
+                        onChange={handleChange}
+                        required
+                        placeholder="Your email"
+                        className={inputClasses}
                     />
                 </div>
-                <button disabled={pending} type='submit' className="btn-flip p-0 border-0 mt-2 w-full" data-back="Contact Me!" data-front="Contact"></button>
+                <div>
+                    <label htmlFor="userPhone" className="sr-only">Phone</label>
+                    <input
+                        type="tel"
+                        id="userPhone"
+                        name="userPhone"
+                        value={formData.userPhone}
+                        onChange={handleChange}
+                        required
+                        placeholder="Your WhatsApp number"
+                        className={inputClasses}
+                    />
+                </div>
             </div>
 
-        </form>
-    )
+            <div>
+                <label htmlFor="userMessage" className="sr-only">Message</label>
+                <textarea
+                    id="userMessage"
+                    name="userMessage"
+                    value={formData.userMessage}
+                    onChange={handleChange}
+                    rows={4}
+                    placeholder="Your message..."
+                    className={`${inputClasses} resize-none`}
+                />
+            </div>
+
+            <GoldenButton
+                type="submit"
+                variant="primary"
+                size="md"
+                disabled={pending}
+                className="w-full"
+            >
+                {pending ? (
+                    <span className="flex items-center justify-center gap-2">
+                        <motion.span
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                            className="w-4 h-4 border-2 border-background border-t-transparent rounded-full"
+                        />
+                        Sending...
+                    </span>
+                ) : (
+                    <span className="flex items-center justify-center gap-2">
+                        <SendIcon className="text-sm" />
+                        Send Message
+                    </span>
+                )}
+            </GoldenButton>
+        </motion.form>
+    );
 }

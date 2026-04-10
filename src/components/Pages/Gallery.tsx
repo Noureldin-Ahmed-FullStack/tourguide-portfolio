@@ -1,23 +1,18 @@
 import {
-  Button,
   Dialog,
-  DialogActions,
-  DialogContent,
-  IconButton,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
   Slide,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import React, { forwardRef, useState } from "react";
+import React, { useState } from "react";
 import ImageLoaderSkeleton from "../ImageLoaderSkeleton";
 import { TransitionProps } from "@mui/material/transitions";
+import { motion, AnimatePresence } from "framer-motion";
+
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children: React.ReactElement<any, any>;
+    children: React.ReactElement;
   },
   ref: React.Ref<unknown>,
 ) {
@@ -25,171 +20,179 @@ const Transition = React.forwardRef(function Transition(
 });
 
 export default function Gallery() {
-
-
-
   const itemData = [
-    {
-      img: "1.jpg",
-      title: "Pyramids",
-      cols: 2,
-    },
-    {
-      img: "2.jpg",
-      title: "Pyramids",
-      cols: 2,
-    },
-    {
-      img: "3.jpg",
-      title: "Pyramids",
-      rows: 2,
-      cols: 2,
-      featured: true,
-    },
-    {
-      img: "4.jpg",
-      title: "Cairo Museum",
-    },
-    {
-      img: "5.jpg",
-      title: "Hurghada ",
-    },
-    {
-      img: "6.jpg",
-      title: "Pyramids",
-      rows: 2,
-      cols: 2,
-    },
-    {
-      img: "7.jpg",
-      title: "Pyramids",
-    },
-    {
-      img: "8.jpg",
-      title: "Cairo Museum",
-    },
-    {
-      img: "9.jpg",
-      title: "Cairo Museum",
-      cols: 2,
-    },
-    {
-      img: "10.jpg",
-      title: "Pyramids",
-      cols: 2,
-    },
-    {
-      img: "11.jpg",
-      title: "Nile",
-      cols: 2,
-    },
-    {
-      img: "12.jpg",
-      title: "Pyramids",
-      cols: 3,
-    },
+    { img: "1.jpg", title: "Pyramids", cols: 2 },
+    { img: "2.jpg", title: "Pyramids", cols: 2 },
+    { img: "3.jpg", title: "Pyramids", rows: 2, cols: 2, featured: true },
+    { img: "4.jpg", title: "Cairo Museum" },
+    { img: "5.jpg", title: "Hurghada" },
+    { img: "6.jpg", title: "Pyramids", rows: 2, cols: 2 },
+    { img: "7.jpg", title: "Pyramids" },
+    { img: "8.jpg", title: "Cairo Museum" },
+    { img: "9.jpg", title: "Cairo Museum", cols: 2 },
+    { img: "10.jpg", title: "Pyramids", cols: 2 },
+    { img: "11.jpg", title: "Nile", cols: 2 },
+    { img: "12.jpg", title: "Pyramids", cols: 3 },
   ];
+
   const theme = useTheme();
   const [modalOpen, setModalOpen] = useState(false);
-  const [SelectedImage, setSelectedImage] = useState<string | boolean>(false);
-  const close = () => setModalOpen(false);
-  const open = () => setModalOpen(true);
-  const displayImage = (image: string | boolean) => {
+  const [SelectedImage, setSelectedImage] = useState<string | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const displayImage = (image: string) => {
     setSelectedImage(image);
-    modalOpen ? close() : open();
+    setModalOpen(true);
   };
+
   const handleClose = () => {
-    setModalOpen(false)
+    setModalOpen(false);
   };
+
   const isXs = useMediaQuery(theme.breakpoints.down("xs"));
   const isSm = useMediaQuery(theme.breakpoints.down("sm"));
   const isMd = useMediaQuery(theme.breakpoints.down("md"));
-  const isLg = useMediaQuery(theme.breakpoints.down("lg"));
-  let cols = 4; // default
 
-  if (isXs) {
-    cols = 1;
-  } else if (isSm) {
-    cols = 2;
-  } else if (isMd) {
-    cols = 3;
-  } else if (isLg) {
-    cols = 4;
-  }
+  let cols = 4;
+  if (isXs) cols = 1;
+  else if (isSm) cols = 2;
+  else if (isMd) cols = 3;
+
   return (
-    <div className="container">
+    <div className="container mx-auto px-4">
+      {/* Image Modal */}
       <Dialog
         sx={{
           "& .MuiPaper-root": {
-            backgroundColor: "transparent", // Change to your desired color
+            backgroundColor: "transparent",
+            boxShadow: "none",
+            overflow: "visible",
+          },
+          "& .MuiBackdrop-root": {
+            backgroundColor: "rgba(0, 0, 0, 0.9)",
           },
         }}
         TransitionComponent={Transition}
         fullWidth={true}
-        maxWidth={'lg'}
+        maxWidth="lg"
         open={modalOpen}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
       >
-        <DialogActions sx={{ padding: '0' }}>
-          <Button sx={{ padding: '0' }} onClick={handleClose} >
-            <CloseIcon
-              sx={{
-                fontSize: '3rem',
-                color: "white", // Changes cursor to pointer to indicate it's clickable
-                transition: 'all 0.6s',
-                borderRadius: '0.3rem',
-                "&:hover": {
-                  color: "black", // Change the color on hover
-                  backgroundColor: 'white',
-                  transform: "scale(1.1)", // Scale up slightly on hover
-                },
-              }}
-              onClick={handleClose}
-            />
-          </Button>
-        </DialogActions>
-        <DialogContent sx={{ padding: '0' }}>
-          <div className="bg-transparent d-flex justify-content-center">
-            <img
-              className="rounded-2 DialogMedia"
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleClose}
+          className="absolute -top-12 right-0 p-2 text-white/70 hover:text-primary transition-colors z-50"
+        >
+          <CloseIcon sx={{ fontSize: "2rem" }} />
+        </motion.button>
+        <div className="flex justify-center items-center">
+          {SelectedImage && (
+            <motion.img
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="max-h-[80vh] max-w-full rounded-lg shadow-2xl"
               src={`https://ssniper.sirv.com/TourguideProject/Gallery/${SelectedImage}`}
+              alt="Gallery view"
             />
-          </div>
-        </DialogContent>
+          )}
+        </div>
       </Dialog>
 
-      <ImageList
-        cols={cols}
-        gap={30}
-        variant="masonry"
-        sx={{ overflow: "hidden" }}
+      {/* Masonry Grid */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={{
+          visible: {
+            transition: {
+              staggerChildren: 0.08,
+            },
+          },
+        }}
+        className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"
       >
-        {itemData.map((item) => (
-          <div key={item.img} onClick={() => displayImage(item.img)}>
-            <ImageListItem className="scaleOnHover">
-              <ImageLoaderSkeleton
-                modalOpen={modalOpen}
-                height={282}
-                src={`https://ssniper.sirv.com/TourguideProject/Gallery/${item.img}`}
-                title={item.title}
-              />
-              <ImageListItemBar
-                title={item.title}
-                actionIcon={
-                  <IconButton
-                    sx={{ color: "rgba(255, 255, 255, 0.54)" }}
-                    aria-label={`info about ${item.title}`}
-                  >
-                    {/* <InfoIcon /> */}
-                  </IconButton>
-                }
-              />
-            </ImageListItem>
-          </div>
+        {itemData.map((item, index) => (
+          <motion.div
+            key={item.img}
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.5, ease: "easeOut" },
+              },
+            }}
+            onHoverStart={() => setHoveredIndex(index)}
+            onHoverEnd={() => setHoveredIndex(null)}
+            onClick={() => displayImage(item.img)}
+            className="relative group cursor-pointer break-inside-avoid mb-4"
+          >
+            <div className="relative overflow-hidden rounded-lg border border-primary/10 hover:border-primary/30 transition-all duration-500">
+              {/* Image */}
+              <div className="relative">
+                <ImageLoaderSkeleton
+                  modalOpen={modalOpen}
+                  height={item.featured ? 400 : item.rows === 2 ? 350 : 250}
+                  src={`https://ssniper.sirv.com/TourguideProject/Gallery/${item.img}`}
+                  title={item.title}
+                />
+
+                {/* Overlay */}
+                <AnimatePresence>
+                  {hoveredIndex === index && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"
+                    />
+                  )}
+                </AnimatePresence>
+
+                {/* Title */}
+                <motion.div
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{
+                    y: hoveredIndex === index ? 0 : 20,
+                    opacity: hoveredIndex === index ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute bottom-0 left-0 right-0 p-4"
+                >
+                  <h4 className="text-white font-serif font-medium text-lg">
+                    {item.title}
+                  </h4>
+                  <span className="text-primary text-sm">Click to view</span>
+                </motion.div>
+
+                {/* Golden accent on hover */}
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: hoveredIndex === index ? 1 : 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-dark via-primary to-primary-light origin-left"
+                />
+
+                {/* Glow effect */}
+                <motion.div
+                  animate={{
+                    boxShadow: hoveredIndex === index
+                      ? "0 20px 60px rgba(201, 169, 98, 0.2)"
+                      : "0 0 0 rgba(201, 169, 98, 0)",
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0 pointer-events-none"
+                />
+              </div>
+            </div>
+          </motion.div>
         ))}
-      </ImageList>
+      </motion.div>
     </div>
   );
 }

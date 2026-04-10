@@ -1,16 +1,7 @@
-.mainBG{
-    /* background-image: url('./bg2.jpg'); */
-    /* z-index: -2; */
-    /* filter: brightness(75%); */
-    /* background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh; 
-    display: flex; */
-    /* position: relative;
-    place-items: center; */
+.mainBG {
     position: relative;
     height: 100vh;
+    overflow: hidden;
 }
 
 .mainBG::before {
@@ -19,23 +10,71 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100% !important;
-    background: linear-gradient(to top, #161815, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25), #16181594);
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 10, 0.7) 0%,
+        rgba(10, 10, 10, 0.4) 40%,
+        rgba(10, 10, 10, 0.4) 60%,
+        rgba(10, 10, 10, 1) 100%
+    );
     z-index: 1;
 }
+
+.aboutBG {
+    position: relative;
+    overflow: hidden;
+}
+
 .aboutBG::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100% !important;
-    background: linear-gradient(to top, #161815, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15), #16181594);
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 10, 0.6) 0%,
+        rgba(10, 10, 10, 0.3) 30%,
+        rgba(10, 10, 10, 0.3) 70%,
+        rgba(10, 10, 10, 1) 100%
+    );
     z-index: 1;
 }
-.typer{
+
+.typer {
     text-align: start;
     width: 100%;
-    height: 9rem;
+    min-height: 9rem;
     z-index: 0;
+}
+
+/* Premium text effects */
+.premium-text {
+    background: linear-gradient(135deg, #E5D4A1 0%, #C9A962 50%, #A68B4B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Elegant image loader */
+.image-skeleton {
+    background: linear-gradient(
+        90deg,
+        rgba(201, 169, 98, 0.05) 0%,
+        rgba(201, 169, 98, 0.1) 50%,
+        rgba(201, 169, 98, 0.05) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
 }

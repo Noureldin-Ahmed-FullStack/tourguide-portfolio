@@ -1,225 +1,184 @@
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import FlightIcon from '@mui/icons-material/Flight';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import LanguageIcon from '@mui/icons-material/Language';
 import { useEffect, useState } from 'react';
-import { Badge, Tab, Tabs, ThemeProvider, Zoom, createTheme } from '@mui/material';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { motion, AnimatePresence } from 'framer-motion';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import FlightIcon from '@mui/icons-material/Flight';
+import LanguageIcon from '@mui/icons-material/Language';
+
 export default function NavDefault() {
     const [t, i18n] = useTranslation("global");
-    const navText: any = t('nav', { returnObjects: true });
+    const navText: string[] = t('nav', { returnObjects: true }) as string[];
     const [CurrentLang, setCurrentLang] = useState(i18n.language);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
     const changeLanguage = () => {
-        console.log(i18n.language);
-        i18n.language == 'en' ? i18n.changeLanguage('ru') : i18n.changeLanguage('en')
-        localStorage.setItem("language", i18n.language)
-        setCurrentLang(i18n.language)
-        // i18n.changeLanguage(lang)
-    }
+        i18n.language === 'en' ? i18n.changeLanguage('ru') : i18n.changeLanguage('en');
+        localStorage.setItem("language", i18n.language);
+        setCurrentLang(i18n.language);
+    };
+
     useEffect(() => {
-        console.log("repeated lang change");
-        const localLang = localStorage.getItem("language")
-        i18n.changeLanguage(localLang || 'en')
-        setCurrentLang(i18n.language)
-    }, [CurrentLang])
+        const localLang = localStorage.getItem("language");
+        i18n.changeLanguage(localLang || 'en');
+        setCurrentLang(i18n.language);
+    }, [CurrentLang, i18n]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const pages = [
         { text: navText[0], path: '' },
-        // { text: navText[1], path: 'Tours' },
-        { text: navText[2], path: 'Gallery' }, { text: navText[3], path: 'About' }];
-    const [anchorElNav, setAnchorElNav] = useState<HTMLElement | null>(null);
-    let navigate = useNavigate()
+        { text: navText[2], path: 'gallery' },
+        { text: navText[3], path: 'about' },
+    ];
 
+    const navigate = useNavigate();
     const location = useLocation();
-    const getTabValue = (pathname: string) => {
-        switch (pathname) {
-            case './':
-                return 1;
-            // case '/tours':
-            //     return 2;
-            case '/gallery':
-                return 3;
-            case '/about':
-                return 4;
-            case '/contact':
-                return 5;
-            default:
-                return 1;
-        }
+
+    const isActive = (path: string) => {
+        if (path === '' && (location.pathname === '/' || location.pathname === '/tourguide-portfolio')) return true;
+        return location.pathname === `/${path}`;
     };
-    const GoToPage = (link: string) => {
-        navigate(link);
-    }
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElNav(event.currentTarget);
-    };
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
-    const theme = createTheme({
-        palette: {
-            mode: 'dark'
-        },
-    });
+
     return (
-        <ThemeProvider theme={theme}>
-            <AppBar sx={{ boxShadow: 'none', top: '2rem', borderBottom: { xs: 1, md: 0 }, zIndex: '4' }} color='transparent' position="absolute">
-                <Container maxWidth="xl">
-                    <Toolbar disableGutters>
-                        <FlightIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            className='noAnchorDefaults MyLink'
-                            component="a"
-                            href="./"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', md: 'flex' },
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit !important',
-                                textDecoration: 'none',
-                            }}
-                        >
-                            AHMED
-                        </Typography>
-
-                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleOpenNavMenu}
-                                color="inherit"
+        <>
+            <motion.nav
+                initial={{ y: -100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+                    isScrolled
+                        ? 'bg-background/80 backdrop-blur-xl border-b border-primary/10'
+                        : 'bg-transparent'
+                }`}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="flex items-center justify-between h-20">
+                        {/* Logo */}
+                        <Link to="/" className="flex items-center gap-3 group">
+                            <motion.div
+                                whileHover={{ rotate: 15 }}
+                                transition={{ type: 'spring', stiffness: 300 }}
                             >
-                                <MenuIcon />
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorElNav}
-                                anchorOrigin={{
-                                    vertical: 'bottom',
-                                    horizontal: 'left',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'left',
-                                }}
-                                open={Boolean(anchorElNav)}
-                                onClose={handleCloseNavMenu}
-                                sx={{
-                                    display: { xs: 'block', md: 'none' },
-                                }}
-                            >
-                                {pages.map((page) => (
-                                    <MenuItem component={Link} to={`/` + page.path} key={page.text} onClick={handleCloseNavMenu}>
-                                        <Typography className='MyLink' textAlign="center">{page.text}</Typography>
-                                    </MenuItem>
-                                ))}
-                            </Menu>
-                        </Box>
-                        <FlightIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                        <Typography
-                            variant="h5"
-                            noWrap
-                            component={Link}
-                            to='/'
-                            className='noAnchorDefaults MyLink'
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'flex', md: 'none' },
-                                flexGrow: 1,
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit !important',
-                                textDecoration: 'none',
-                            }}
-                        >
-                            AHMED
-                        </Typography>
-                        <Box sx={{ flexGrow: 1, justifyContent: "center", display: { xs: 'none', md: 'flex' } }}>
-                            <Tabs
-                                value={getTabValue(location.pathname)}
-                                variant="scrollable"
-                                indicatorColor="secondary"
-                                sx={{
-                                    borderBottom: 1, borderColor: 'divider',
-                                    '& .MuiTabs-indicator': {
-                                        backgroundColor: '#e51f1f',
-                                    },
-                                    '& .MuiTab-root.Mui-selected': {
-                                        color: 'white',
-                                        fontWeight: 'bold',
-                                    },
-                                }}
-                                textColor="inherit"
-                                scrollButtons
-                                allowScrollButtonsMobile
-                                aria-label="lab API tabs example">
-                                <Tab onClick={() => GoToPage('./')} label={navText[0]} value={1} />
-                                {/* <Tab onClick={() => GoToPage('./tours')} label={navText[1]} value={2} /> */}
-                                <Tab onClick={() => GoToPage('./gallery')} label={navText[2]} value={3} />
-                                <Tab onClick={() => GoToPage('./about')} label={navText[3]} value={4} />
-                                {/* <Tab onClick={() => GoToPage('./contact')} label={navText[4]} value={5} /> */}
-                            </Tabs>
-                        </Box>
+                                <FlightIcon className="text-primary text-2xl" />
+                            </motion.div>
+                            <span className="font-serif text-xl font-bold tracking-wider text-white group-hover:text-primary transition-colors duration-300">
+                                AHMED
+                            </span>
+                        </Link>
 
-                        <Box className="me-2" sx={{ flexGrow: 0 }}>
-                            <Tooltip TransitionComponent={Zoom} title={t('tooltips.langtooltip')}>
-                                <Badge badgeContent={CurrentLang} color='primary'>
-                                    <LanguageIcon onClick={changeLanguage} className='languageIco' sx={{
-                                        transition: 'transform 0.3s ease',
-                                        cursor: "pointer",
-                                        '&:hover': {
-                                            transform: 'scale(1.2)',
-                                        }
-                                    }} />
-                                </Badge>
+                        {/* Desktop Navigation */}
+                        <div className="hidden md:flex items-center gap-1">
+                            {pages.map((page) => (
+                                <Link
+                                    key={page.text}
+                                    to={`/${page.path}`}
+                                    className="relative px-5 py-2 group"
+                                >
+                                    <span className={`text-sm font-medium uppercase tracking-widest transition-colors duration-300 ${
+                                        isActive(page.path) ? 'text-primary' : 'text-white/70 hover:text-white'
+                                    }`}>
+                                        {page.text}
+                                    </span>
+                                    {/* Animated underline */}
+                                    <motion.span
+                                        className="absolute bottom-0 left-1/2 h-px bg-gradient-to-r from-transparent via-primary to-transparent"
+                                        initial={{ width: 0, x: '-50%' }}
+                                        animate={{
+                                            width: isActive(page.path) ? '80%' : 0,
+                                            x: '-50%'
+                                        }}
+                                        transition={{ duration: 0.3 }}
+                                    />
+                                    {/* Hover underline */}
+                                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-px bg-primary/50 group-hover:w-[60%] transition-all duration-300" />
+                                </Link>
+                            ))}
+                        </div>
 
-                                {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}> */}
-                                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
-                                {/* </IconButton> */}
-                            </Tooltip>
-                            {/* <Menu
-                                sx={{ mt: '45px' }}
-                                id="menu-appbar"
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
+                        {/* Right side - Language toggle */}
+                        <div className="flex items-center gap-4">
+                            <motion.button
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={changeLanguage}
+                                className="flex items-center gap-2 px-3 py-2 rounded-full border border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-300"
                             >
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
-                                    </MenuItem>
-                                ))}
-                            </Menu> */}
-                        </Box>
-                    </Toolbar>
-                </Container>
-            </AppBar>
-        </ThemeProvider>
-    )
+                                <LanguageIcon className="text-primary text-xl" />
+                                <span className="text-xs font-semibold uppercase text-primary">
+                                    {CurrentLang}
+                                </span>
+                            </motion.button>
+
+                            {/* Mobile menu button */}
+                            <motion.button
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                                className="md:hidden p-2 text-white hover:text-primary transition-colors"
+                            >
+                                {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+                            </motion.button>
+                        </div>
+                    </div>
+                </div>
+            </motion.nav>
+
+            {/* Mobile Menu */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3 }}
+                        className="fixed inset-0 z-40 md:hidden"
+                    >
+                        {/* Backdrop */}
+                        <div
+                            className="absolute inset-0 bg-background/95 backdrop-blur-xl"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        />
+
+                        {/* Menu content */}
+                        <div className="relative h-full flex flex-col items-center justify-center gap-8 p-8">
+                            {pages.map((page, index) => (
+                                <motion.div
+                                    key={page.text}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                >
+                                    <Link
+                                        to={`/${page.path}`}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className={`text-2xl font-serif font-medium tracking-wider transition-colors duration-300 ${
+                                            isActive(page.path) ? 'text-primary' : 'text-white hover:text-primary'
+                                        }`}
+                                    >
+                                        {page.text}
+                                    </Link>
+                                </motion.div>
+                            ))}
+
+                            {/* Decorative line */}
+                            <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: 80 }}
+                                transition={{ delay: 0.4, duration: 0.6 }}
+                                className="h-px bg-gradient-to-r from-transparent via-primary to-transparent"
+                            />
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
+    );
 }

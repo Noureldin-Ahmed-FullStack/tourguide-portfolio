@@ -1,27 +1,27 @@
 .myDarkBG {
-    /* background-color: #161815; */
     background-color: transparent;
 }
 
 .browseLink {
     cursor: pointer;
-    color: #ffffffec;
-    transition: all 0.3s;
+    color: #C9A962;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.browseLink:hover {
+    color: #E5D4A1;
+    letter-spacing: 0.05em;
 }
 
 .galleryMT {
     margin-top: 7rem;
 }
 
-.browseLink:hover {
-    color: #e51f1f;
-    font-size: 1.05rem;
-}
-
 .MyLink {
     cursor: pointer;
     color: #ffffffec;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 .whatsAppLink:hover {
@@ -36,13 +36,12 @@
     color: #40a7e3;
 }
 
-
+/* Premium Instagram hover effect */
 .InstaBG {
     position: relative;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     cursor: pointer;
-    transition: background 0.3s ease;
-    /* Transition base background */
+    transition: all 0.3s ease;
     z-index: 1;
 }
 
@@ -53,19 +52,18 @@
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 0.6rem;
-    background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%),
-        radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%),
-        radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%),
-        radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%),
-        radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%),
-        radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%),
-        radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent),
-        linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+    border-radius: 0.5rem;
+    background: linear-gradient(
+        45deg,
+        #f09433 0%,
+        #e6683c 25%,
+        #dc2743 50%,
+        #cc2366 75%,
+        #bc1888 100%
+    );
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: -1;
-    /* Ensure it sits behind any content */
 }
 
 .InstaBG:hover::before {
@@ -73,38 +71,23 @@
 }
 
 .MailLink:hover {
-    color: #e51f1f;
+    color: #C9A962;
 }
 
 .TourSelector {
-    transition: filter 0.3s;
-
+    transition: filter 0.3s ease;
     filter: brightness(90%);
 }
 
 .TourSelector:hover {
-
     filter: brightness(100%);
 }
 
-.gradient-bg {
-    width: 300px;
-    height: 300px;
-    background: #f09433;
-    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
-}
-
 .gradient-text {
-    background: #f09433;
-    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
+    background: linear-gradient(135deg, #E5D4A1 0%, #C9A962 50%, #A68B4B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .myMultiCarousel {
@@ -115,143 +98,174 @@
     cursor: grab;
 }
 
+.grab:active {
+    cursor: grabbing;
+}
+
 .DialogMedia {
     max-width: 100%;
     max-height: 80vh;
 }
 
-/* flip button */
-
+/* Premium flip button */
 .btn-flip {
-  opacity: 1;
-  outline: 0;
-  color: #fff;
-  position: relative;
-  text-align: center;
-  letter-spacing: 1px;
-  display: inline-block;
-  text-decoration: none;
-  font-family: "Open Sans";
-  text-transform: uppercase;
+    opacity: 1;
+    outline: 0;
+    color: #fff;
+    position: relative;
+    text-align: center;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    border: none;
+    background: transparent;
 }
+
 .btn-flip:disabled {
-  opacity: 0.2;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
+
 .btn-flip:hover:after {
-  opacity: 1;
-  transform: translateY(0) rotateX(0);
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
 }
+
 .btn-flip:hover:before {
-  opacity: 0;
-  transform: translateY(50%) rotateX(90deg);
+    opacity: 0;
+    transform: translateY(50%) rotateX(90deg);
 }
+
 .btn-flip:after {
-  top: 0;
-  left: 0;
-  opacity: 0;
-  width: 100%;
-  color: #323237;
-  display: block;
-  transition: 0.5s;
-  position: absolute;
-  padding: 15px 0px;
-  background: #ccccce;
-  content: attr(data-back);
-  transform: translateY(-50%) rotateX(90deg);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    color: #0A0A0A;
+    display: block;
+    transition: 0.5s;
+    position: absolute;
+    padding: 15px 0px;
+    background: linear-gradient(135deg, #E5D4A1 0%, #C9A962 50%, #A68B4B 100%);
+    content: attr(data-back);
+    transform: translateY(-50%) rotateX(90deg);
+    border-radius: 4px;
 }
+
 .btn-flip:before {
-  top: 0;
-  left: 0;
-  opacity: 1;
-  color: #adadaf;
-  display: block;
-  padding: 15px 30px;
-  transition: 0.5s;
-  position: relative;
-  background: #323237;
-  content: attr(data-front);
-  transform: translateY(0) rotateX(0);
+    top: 0;
+    left: 0;
+    opacity: 1;
+    color: #C9A962;
+    display: block;
+    padding: 15px 30px;
+    transition: 0.5s;
+    position: relative;
+    background: transparent;
+    border: 1px solid #C9A962;
+    content: attr(data-front);
+    transform: translateY(0) rotateX(0);
+    border-radius: 4px;
 }
-/* flip button */
 
-/* Learn button */
-
+/* Premium learn button */
 .learnBTN {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  outline: none;
-  border: 0;
-  vertical-align: middle;
-  text-decoration: none;
-  background: transparent;
-  padding: 0;
-  font-size: inherit;
-  font-family: inherit;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: 'Inter', sans-serif;
 }
-.learnBTN.learn-more {
-}
+
 .learnBTN.learn-more .circle {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: relative;
-  display: block;
-  margin: 0;
-  width: 3rem;
-  height: 3rem;
-  background: #fff;
-  border-radius: 0.2rem;
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    display: block;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    background: linear-gradient(135deg, #E5D4A1 0%, #C9A962 50%, #A68B4B 100%);
+    border-radius: 0.25rem;
 }
+
 .learnBTN.learn-more .circle .icon {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  background: #282936;
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #0A0A0A;
 }
+
 .learnBTN.learn-more .circle .icon.arrow {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  left: 0.625rem;
-  width: 1.125rem;
-  height: 0.125rem;
-  background: none;
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    left: 0.625rem;
+    width: 1.125rem;
+    height: 0.125rem;
+    background: none;
 }
+
 .learnBTN.learn-more .circle .icon.arrow::before {
-  position: absolute;
-  content: "";
-  top: -0.25rem;
-  right: 0.0625rem;
-  width: 0.625rem;
-  height: 0.625rem;
-  border-top: 0.125rem solid #282936;
-  border-right: 0.125rem solid #282936;
-  transform: rotate(45deg);
+    position: absolute;
+    content: "";
+    top: -0.25rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #0A0A0A;
+    border-right: 0.125rem solid #0A0A0A;
+    transform: rotate(45deg);
 }
+
 .learnBTN.learn-more .learnBTN-text {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: absolute;
-  top: 0;
-  left: 26px;
-  /* right: 0; */
-  bottom: 0;
-  margin: 0 0 0 1.85rem;
-  color: #fff;
-  font-weight: 700;
-  line-height: 1.6;
-  text-align: center;
-  text-transform: uppercase;
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    left: 26px;
+    bottom: 0;
+    margin: 0 0 0 1.85rem;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.6;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
+
 .learnBTN:hover .circle {
-  width: 100%;
+    width: 100%;
 }
+
 .learnBTN:hover .circle .icon.arrow {
-  background: #282936;
-  transform: translate(1rem, 0);
+    background: #0A0A0A;
+    transform: translate(1rem, 0);
 }
+
 .learnBTN:hover .learnBTN-text {
-  color: #282936;
+    color: #0A0A0A;
 }
-.learnBTN-text{
-  display: flex;
-  align-items: center;
+
+.learnBTN-text {
+    display: flex;
+    align-items: center;
+}
+
+/* Scale on hover for cards */
+.ScaleOnHover {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ScaleOnHover:hover {
+    transform: scale(1.02) translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
+                0 0 40px rgba(201, 169, 98, 0.1);
 }
